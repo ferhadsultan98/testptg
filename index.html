@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prime Trade Group</title>
+    <title>Prime Trade Group - Strateji Təchizat Həlləri</title>
     <style>
         /* --- Ümumi Stilizasiya --- */
         :root {
             --primary-blue: #3B5974; /* Loqodan tünd göy */
-            --primary-grey: #8C98A3; /* Loqodan orta boz */
-            --accent-silver: #BDC3C7; /* Gümüşü/Açıq Boz */
-            --light-background: #F4F6F8; /* Çox açıq fon */
-            --dark-text: #2c3e50;
-            --light-text: #FFFFFF;
-            --section-padding: 60px 20px;
-            --border-radius: 5px;
+            --primary-grey: #808B96; /* Loqodan orta boz (biraz açığı) */
+            --accent-silver: #B0BCC2; /* Gümüşü / Açıq Boz Metalik */
+            --dark-silver: #909FA7; /* Tünd Gümüşü */
+            --light-background: #F8F9FA; /* Çox açıq fon */
+            --white-text: #FFFFFF;
+            --dark-text: #2E3641; /* Daha tünd mətn rəngi */
+            --section-padding: 80px 20px;
+            --border-radius: 6px;
+            --box-shadow: 0 6px 18px rgba(46, 54, 65, 0.1);
+            --box-shadow-light: 0 4px 12px rgba(46, 54, 65, 0.07);
         }
 
         * {
@@ -24,76 +27,102 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif; /* Və ya istədiyiniz başqa şrift */
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
             color: var(--dark-text);
-            background-color: var(--light-text);
+            background-color: var(--white-text);
+            scroll-behavior: smooth;
         }
 
         .container {
             width: 90%;
-            max-width: 1200px;
+            max-width: 1140px;
             margin: 0 auto;
-            padding: 0 15px;
         }
 
-        h1, h2, h3 {
+        h1, h2, h3, h4 {
             color: var(--primary-blue);
             margin-bottom: 20px;
+            font-weight: 600;
         }
 
-        h1 { font-size: 2.8em; }
-        h2 { font-size: 2.2em; }
-        h3 { font-size: 1.5em; }
+        h1 { font-size: 3.2em; line-height: 1.2; } /* Hero üçün böyük */
+        h2 { font-size: 2.5em; margin-bottom: 40px; } /* Bölmə başlıqları */
+        h3 { font-size: 1.6em; }
+        h4 { font-size: 1.2em; color: var(--dark-text); }
 
         p {
-            margin-bottom: 15px;
-            color: #555;
+            margin-bottom: 18px;
+            color: #5A6A7B; /* Mətn üçün bir az daha yumşaq rəng */
+            font-size: 1.05em;
         }
 
         a {
             text-decoration: none;
             color: var(--primary-blue);
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: var(--dark-silver);
         }
 
-        ul {
-            list-style: none;
-        }
+        ul { list-style: none; }
 
         .btn {
             display: inline-block;
-            padding: 12px 25px;
+            padding: 14px 30px;
             background-color: var(--primary-blue);
-            color: var(--light-text);
+            color: var(--white-text);
             border-radius: var(--border-radius);
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            font-weight: 600;
+            font-size: 1em;
             text-align: center;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 10px rgba(59, 89, 116, 0.2);
         }
-
         .btn:hover {
             background-color: #2c4359; /* Biraz daha tünd göy */
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(59, 89, 116, 0.3);
         }
-
         .btn-secondary {
-            background-color: var(--primary-grey);
+            background-color: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
         }
         .btn-secondary:hover {
-            background-color: #7a868f; /* Biraz daha tünd boz */
+            background-color: var(--primary-blue);
+            color: var(--white-text);
+            border-color: var(--primary-blue);
         }
-
+        .btn-silver {
+            background-color: var(--accent-silver);
+            color: var(--dark-text);
+            border-color: var(--accent-silver);
+        }
+        .btn-silver:hover {
+            background-color: var(--dark-silver);
+            color: var(--white-text);
+            border-color: var(--dark-silver);
+        }
 
         /* --- Header --- */
         .header {
-            background-color: var(--light-text);
-            padding: 15px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.95); /* Yüngül şəffaflıq */
+            backdrop-filter: blur(8px); /* Arxa fonu bulandırma effekti */
+            padding: 18px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
             position: fixed;
             width: 100%;
             top: 0;
             left: 0;
             z-index: 1000;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .header.scrolled {
+            background-color: rgba(255, 255, 255, 1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .header .container {
@@ -103,31 +132,44 @@
         }
 
         .logo img {
-            height: 50px;
+            height: 55px; /* Loqo ölçüsü bir az artırıldı */
+            transition: transform 0.3s ease;
+        }
+        .logo img:hover {
+            transform: scale(1.05);
         }
 
-        .nav-menu ul {
-            display: flex;
-        }
-
-        .nav-menu ul li {
-            margin-left: 25px;
-        }
-
+        .nav-menu ul { display: flex; }
+        .nav-menu ul li { margin-left: 30px; }
         .nav-menu ul li a {
-            font-weight: bold;
+            font-weight: 500;
             font-size: 1em;
-            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+        .nav-menu ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-silver);
+            transition: width 0.3s ease;
+        }
+        .nav-menu ul li a:hover::after,
+        .nav-menu ul li a.active::after {
+            width: 100%;
+        }
+        .nav-menu ul li a.active {
+            color: var(--primary-blue); /* Aktiv linki fərqləndirmək */
+            font-weight: 600;
         }
 
-        .nav-menu ul li a:hover,
-        .nav-menu ul li a.active {
-            color: var(--accent-silver);
-        }
 
         .menu-toggle {
-            display: none; /* Mobildə görünəcək */
-            font-size: 24px;
+            display: none;
+            font-size: 28px;
             background: none;
             border: none;
             color: var(--primary-blue);
@@ -136,80 +178,76 @@
 
         /* --- Hero Bölməsi --- */
         #hero {
-            background: linear-gradient(rgba(59, 89, 116, 0.7), rgba(59, 89, 116, 0.7)), url('image.png') no-repeat center center/cover; /* Loqonun özünü arxa fon kimi istifadə etmək çox yaxşı görünməyə bilər. Sadə rəng və ya abstrakt şəkil daha yaxşıdır. */
-            /* Alternativ fon: */
-            background: var(--primary-blue); /* Solid rəng */
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-grey) 100%); /* Gradient fon */
-            color: var(--light-text);
-            height: 100vh; /* Ekranı tam tutsun */
+            /* Placeholder şəkil - bunu öz şəklinizlə əvəz edin */
+            background-image: linear-gradient(rgba(46, 54, 65, 0.75), rgba(46, 54, 65, 0.85)), url('hero-background.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed; /* Parallax effekti üçün */
+            color: var(--white-text);
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             padding: var(--section-padding);
-            margin-top: 80px; /* Header hündürlüyü qədər */
+            margin-top: 0; /* Header fixed olduğu üçün margin-top lazım deyil */
         }
-
-        #hero .hero-logo img {
-            max-width: 200px; /* Loqo ölçüsünü tənzimləyin */
-            margin-bottom: 20px;
-            background: rgba(255,255,255,0.1); /* Loqo arxasına yüngül fon */
-            border-radius: 50%; /* Loqonu dairəvi göstərmək üçün */
-            padding: 15px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
-        }
-
-        #hero h1 {
-            font-size: 3.5em;
-            margin-bottom: 15px;
-            color: var(--light-text);
-            font-weight: bold;
-        }
-
-        #hero .slogan {
-            font-size: 1.5em;
+        #hero .hero-logo-container {
             margin-bottom: 30px;
-            font-style: italic;
-            color: var(--accent-silver);
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            padding: 20px;
+            display: inline-block;
+            box-shadow: 0 0 25px rgba(255,255,255,0.1);
         }
+        #hero .hero-logo-container img {
+            max-width: 180px; /* Loqo ölçüsü */
+            height: auto;
+            display: block;
+        }
+        #hero h1 {
+            color: var(--white-text);
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        #hero .slogan {
+            font-size: 1.6em;
+            margin-bottom: 40px;
+            color: var(--accent-silver); /* Slogan üçün gümüşü rəng */
+            font-weight: 400;
+        }
+        #hero .btn {
+            font-size: 1.1em;
+            padding: 16px 35px;
+        }
+
 
         /* --- Ümumi Bölmə Stilizasiyası --- */
         section {
             padding: var(--section-padding);
+            overflow: hidden; /* Animasiyalar üçün faydalıdır */
         }
-
         section:nth-child(even) {
             background-color: var(--light-background);
-        }
-        section#contact { /* Əlaqə bölməsi üçün fərqli fon */
-            background-color: var(--accent-silver);
-        }
-        section#contact h2, section#contact p, section#contact label {
-            color: var(--dark-text);
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
-            font-size: 2.5em;
+            margin-bottom: 60px; /* Başlıqlar üçün daha çox boşluq */
             position: relative;
         }
-        .section-title::after {
+        .section-title::before { /* Başlıq üçün dekorativ element */
             content: '';
             display: block;
-            width: 80px;
-            height: 4px;
+            width: 100px;
+            height: 3px;
             background-color: var(--accent-silver);
-            margin: 10px auto 0;
+            margin: 0 auto 15px; /* Xətt başlıqdan yuxarıda */
             border-radius: 2px;
         }
-        section:nth-child(even) .section-title::after {
-            background-color: var(--primary-blue);
-        }
-        section#contact .section-title::after{
-             background-color: var(--primary-blue);
-        }
+        /* section:nth-child(even) .section-title::before { background-color: var(--primary-blue); } */
 
 
         /* --- Haqqımızda Bölməsi --- */
@@ -217,213 +255,213 @@
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 30px;
+            gap: 50px;
         }
-
-        #about .about-content, #about .about-image {
+        #about .about-content, #about .about-image-container {
             flex: 1;
             min-width: 300px;
         }
-
-        #about .about-image img {
+        #about .about-image-container img {
             width: 100%;
-            max-width: 400px;
+            max-width: 450px; /* Şəkil ölçüsü */
             border-radius: var(--border-radius);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border: 5px solid var(--accent-silver);
+            box-shadow: var(--box-shadow);
+            border: 6px solid var(--accent-silver); /* Gümüşü çərçivə */
+            display: block;
+            margin: 0 auto;
         }
-        #about .about-image { text-align: center; }
 
 
         /* --- Xidmətlərimiz Bölməsi --- */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Kartların minimal eni */
+            gap: 35px;
         }
-
         .service-item {
-            background-color: var(--light-text);
-            padding: 30px;
+            background-color: var(--white-text);
+            padding: 35px;
             border-radius: var(--border-radius);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: var(--box-shadow-light);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-left: 5px solid var(--primary-blue);
+            border-top: 4px solid var(--primary-blue); /* Üst sərhəd */
+            text-align: center; /* Məzmunu mərkəzləşdir */
         }
-
         .service-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+            transform: translateY(-8px);
+            box-shadow: var(--box-shadow);
         }
-
         .service-item .icon {
-            font-size: 2.5em; /* İkonlar üçün yer */
+            font-size: 3em; /* İkon ölçüsü */
+            margin-bottom: 20px;
+            color: var(--primary-blue); /* İkon rəngi */
+            display: block; /* İkonu blok element et */
+        }
+         .service-item h4 { /* Xidmət adı üçün h4 */
             margin-bottom: 15px;
-            color: var(--primary-blue);
-            /* Nümunə üçün simvol istifadə edə bilərsiniz və ya SVG/FontAwesome */
-            /* Məsələn: content: "⚙️"; */
-        }
-         .service-item h3 {
-            margin-bottom: 10px;
             font-size: 1.4em;
+            color: var(--primary-blue);
         }
-
 
         /* --- Niyə Biz Bölməsi --- */
         #why-us {
-            background-color: var(--primary-blue);
-            color: var(--light-text);
+            background-color: var(--dark-text); /* Tünd fon */
+            color: var(--white-text);
         }
-
-        #why-us .section-title, #why-us h3 {
-            color: var(--light-text);
+        #why-us .section-title, #why-us h4 {
+            color: var(--white-text);
         }
-        #why-us .section-title::after {
+        #why-us .section-title::before {
             background-color: var(--accent-silver);
         }
-
-        #why-us p {
-            color: #e0e0e0;
-        }
+        #why-us p { color: #CED4DA; /* Açıq boz mətn */ }
 
         .why-us-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
-
         .why-us-item {
             background: rgba(255, 255, 255, 0.05);
-            padding: 25px;
+            padding: 30px;
             border-radius: var(--border-radius);
-            border: 1px solid var(--accent-silver);
+            border: 1px solid var(--accent-silver); /* Gümüşü sərhəd */
+            text-align: left;
         }
-        .why-us-item h3 {
-            margin-bottom: 10px;
-            font-size: 1.3em;
+        .why-us-item .icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: var(--accent-silver); /* İkon üçün gümüşü rəng */
+            display: block;
         }
+        .why-us-item h4 { margin-bottom: 10px; }
 
 
         /* --- Əlaqə Bölməsi --- */
-        #contact .container {
+        #contact { background-color: var(--light-background); }
+        #contact .container-flex {
             display: flex;
             flex-wrap: wrap;
             gap: 40px;
+            background-color: var(--white-text);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
         }
         .contact-info, .contact-form-container {
             flex: 1;
             min-width: 300px;
         }
-        .contact-info p {
-            margin-bottom: 15px;
-            font-size: 1.1em;
-        }
-        .contact-info strong {
+        .contact-info h3 { margin-bottom: 25px; }
+        .contact-info p { margin-bottom: 18px; font-size: 1.1em; }
+        .contact-info strong { color: var(--primary-blue); }
+        .contact-info .info-item { display: flex; align-items: center; margin-bottom: 15px; }
+        .contact-info .info-item .icon {
+            font-size: 1.5em;
             color: var(--primary-blue);
+            margin-right: 15px;
+            width: 30px; /* İkon üçün sabit en */
+            text-align: center;
         }
+
         .contact-form input, .contact-form textarea {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #DDE2E8; /* Daha açıq sərhəd */
             border-radius: var(--border-radius);
             font-family: inherit;
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
-        .contact-form textarea {
-            resize: vertical;
-            min-height: 120px;
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(59, 89, 116, 0.15);
         }
-        .contact-form button {
-            width: 100%;
-        }
+        .contact-form textarea { resize: vertical; min-height: 150px; }
+        .contact-form button { width: 100%; padding: 15px; font-size: 1.1em; }
 
 
         /* --- Footer --- */
         .footer {
             background-color: var(--dark-text);
-            color: var(--light-text);
+            color: #CED4DA; /* Açıq mətn */
             text-align: center;
-            padding: 25px 0;
-            font-size: 0.9em;
+            padding: 40px 20px;
+            font-size: 0.95em;
         }
-        .footer p {
-            margin: 0;
-            color: #ccc;
-        }
-        .footer a {
-            color: var(--accent-silver);
-        }
-        .footer a:hover {
-            text-decoration: underline;
-        }
+        .footer p { margin: 0 0 10px; color: #CED4DA; }
+        .footer a { color: var(--accent-silver); }
+        .footer a:hover { text-decoration: underline; color: var(--white-text); }
 
 
         /* --- Responsivlik --- */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.8em; }
+            h2 { font-size: 2.2em; }
+            #hero .slogan { font-size: 1.4em; }
+            #hero .hero-logo-container img { max-width: 150px; }
+        }
+
         @media (max-width: 768px) {
             .header .container {
-                flex-direction: column;
-                align-items: flex-start;
+                padding-left: 15px;
+                padding-right: 15px;
             }
             .nav-menu {
-                display: none; /* Başlanğıcda gizli */
-                width: 100%;
-                margin-top: 10px;
-            }
-            .nav-menu.active {
-                display: block; /* JavaScript ilə açılacaq */
-            }
-            .nav-menu ul {
-                flex-direction: column;
-            }
-            .nav-menu ul li {
-                margin: 10px 0;
-                text-align: center;
-            }
-            .menu-toggle {
-                display: block; /* Mobildə görünür */
+                display: none;
                 position: absolute;
-                top: 20px;
-                right: 20px;
+                top: 100%; /* Header-in tam altında */
+                left: 0;
+                width: 100%;
+                background-color: var(--white-text);
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 10px 0;
             }
+            .nav-menu.active { display: block; }
+            .nav-menu ul { flex-direction: column; }
+            .nav-menu ul li { margin: 12px 20px; text-align: center; }
+            .nav-menu ul li a::after { display: none; } /* Mobil menyuda alt xətti ləğv et */
 
-            #hero {
-                margin-top: 60px; /* Header hündürlüyü azaldı */
-                height: auto;
-                padding-top: 80px;
-                padding-bottom: 80px;
-            }
-            #hero h1 { font-size: 2.5em; }
+            .menu-toggle { display: block; }
+
+            #hero { height: auto; min-height: 80vh; padding-top: 120px; padding-bottom: 80px; background-attachment: scroll; }
+            #hero h1 { font-size: 2.4em; }
             #hero .slogan { font-size: 1.2em; }
-            #hero .hero-logo img { max-width: 150px;}
-
+            #hero .hero-logo-container img { max-width: 120px; }
 
             h1 { font-size: 2.2em; }
-            h2 { font-size: 1.8em; }
-            .section-title { font-size: 2em; }
+            h2 { font-size: 2em; margin-bottom: 40px; }
+            .section-title { margin-bottom: 40px; }
+            .section-title::before { width: 80px; margin-bottom: 10px;}
 
-            #about .container {
-                flex-direction: column;
-            }
-            #about .about-image {
-                margin-top: 20px;
-            }
-            #about .about-image img {
-                 max-width: 300px;
-            }
+            #about .container { flex-direction: column; text-align: center; }
+            #about .about-image-container { margin-top: 30px; }
+            #about .about-image-container img { max-width: 80%; }
 
-            .services-grid, .why-us-grid {
-                grid-template-columns: 1fr; /* Mobil cihazlarda tək sütun */
-            }
-            #contact .container {
-                flex-direction: column;
-            }
+            .services-grid, .why-us-grid { grid-template-columns: 1fr; }
+            .service-item, .why-us-item { padding: 25px; }
 
+            #contact .container-flex { flex-direction: column; padding: 30px; }
+            .contact-info { margin-bottom: 30px; text-align:center; }
+            .contact-info .info-item { justify-content: center; }
         }
+
+        @media (max-width: 480px) {
+            :root { --section-padding: 60px 15px; }
+            #hero h1 { font-size: 2em; }
+            #hero .slogan { font-size: 1.1em; }
+            .btn { padding: 12px 25px; font-size: 0.95em; }
+            #hero .btn { padding: 14px 30px; }
+            .contact-form input, .contact-form textarea { padding: 12px; }
+        }
+
     </style>
 </head>
 <body>
 
-    <header class="header">
+    <header class="header" id="header">
         <div class="container">
             <a href="#hero" class="logo">
                 <img src="image.png" alt="Prime Trade Group Loqo">
@@ -431,7 +469,7 @@
             <button class="menu-toggle" id="menuToggle" aria-label="Menyunu aç/bağla">☰</button>
             <nav class="nav-menu" id="navMenu">
                 <ul>
-                    <li><a href="#hero">Ana Səhifə</a></li>
+                    <li><a href="#hero" class="active">Ana Səhifə</a></li>
                     <li><a href="#about">Haqqımızda</a></li>
                     <li><a href="#services">Xidmətlərimiz</a></li>
                     <li><a href="#why-us">Niyə Biz?</a></li>
@@ -443,47 +481,47 @@
 
     <main>
         <section id="hero">
-            <div class="hero-logo">
+            <div class="hero-logo-container">
                  <img src="image.png" alt="Prime Trade Group Loqo">
             </div>
             <h1>PRIME TRADE GROUP</h1>
             <p class="slogan">Strateji Təchizat Həlləri, Etibarlı Tərəfdaşınız.</p>
-            <a href="#about" class="btn">Ətraflı Baxın</a>
+            <a href="#about" class="btn">Daha Ətraflı</a>
         </section>
 
         <section id="about">
             <div class="container">
                 <div class="about-content">
-                    <h2 class="section-title">Şirkət Haqqında</h2>
-                    <p><strong>Prime Trade Group</strong>, müxtəlif sahələr üzrə tenderlərdə iştirak, peşəkar satınalma xidmətləri, effektiv təchizat və mürəkkəb təchizat zəncirinin idarə edilməsi üzrə ixtisaslaşmış bir şirkətdir. Məqsədimiz müştərilərimizə keyfiyyətli, etibarlı və innovativ həllər təqdim edərək onların biznes fəaliyyətlərini dəstəkləmək və davamlı inkişaflarına töhfə verməkdir.</p>
-                    <p>Komandamızın dərin təcrübəsi və bazar biliyi sayəsində, hər bir layihəyə fərdi yanaşaraq optimal nəticələr əldə edirik. Bizim üçün müştəri məmnuniyyəti hər zaman prioritetdir və bu prinsipi fəaliyyətimizin əsas sütunu hesab edirik.</p>
-                    <a href="#services" class="btn btn-secondary">Xidmətlərimizlə Tanış Olun</a>
+                    <h2 class="section-title">Şirkətimiz Haqqında</h2>
+                    <p><strong>Prime Trade Group</strong>, müxtəlif sənaye sahələrində tender əməliyyatları, effektiv satınalma strategiyaları, kompleks təchizat prosesləri və təchizat zəncirinin peşəkar idarə olunması üzrə ixtisaslaşmışdır. Əsas məqsədimiz, müştərilərimizə yüksək keyfiyyətli, innovativ və etibarlı həllər təqdim etməklə onların biznes fəaliyyətlərini optimallaşdırmaq və dayanıqlı inkişaflarına dəstək olmaqdır.</p>
+                    <p>Bazarın dərin biliklərinə və geniş təcrübəyə malik komandamız hər bir layihəyə fərdi yanaşma tətbiq edərək maksimum səmərə əldə etməyə çalışır. Müştəri məmnuniyyətini fəaliyyətimizin təməl prinsipi olaraq qəbul edir və bu istiqamətdə davamlı olaraq çalışırıq.</p>
+                    <a href="#services" class="btn btn-secondary">Xidmətlərimizi Kəşf Edin</a>
                 </div>
-                <div class="about-image">
-                    <img src="image.png" alt="Prime Trade Group Fəaliyyəti">
+                <div class="about-image-container">
+                    <img src="https://via.placeholder.com/450x350.png?text=Prime+Trade+Group+Fəaliyyəti" alt="Prime Trade Group Komandası və Fəaliyyəti">
                 </div>
             </div>
         </section>
 
         <section id="services">
             <div class="container">
-                <h2 class="section-title">Xidmətlərimiz</h2>
+                <h2 class="section-title">Əsas Xidmətlərimiz</h2>
                 <div class="services-grid">
                     <div class="service-item">
-                        <div class="icon"> tender </div> <h3>Tenderlərdə İştirak</h3>
-                        <p>Dövlət və özəl sektor tenderlərində şirkətinizin effektiv və uğurlu iştirakını təmin edirik. Tender sənədlərinin hazırlanmasından tutmuş, təqdimat və izləmə proseslərinə qədər tam dəstək göstəririk.</p>
+                        <span class="icon">🏆</span> <h4>Tender Əməliyyatları</h4>
+                        <p>Dövlət və özəl sektor tenderlərində şirkətinizin rəqabət qabiliyyətini artırır, sənədləşmə və təqdimat proseslərində tam dəstək göstəririk.</p>
                     </div>
                     <div class="service-item">
-                        <div class="icon"> satinalma </div> <h3>Satınalma və Təchizat</h3>
-                        <p>Biznesinizin ehtiyaclarına uyğun olaraq ən sərfəli şərtlərlə keyfiyyətli mal və xidmətlərin satınalınması və təchizatını peşəkar səviyyədə həyata keçiririk. Təchizat proseslərini optimallaşdırırıq.</p>
+                        <span class="icon">🛒</span> <h4>Satınalma və Təchizat</h4>
+                        <p>Biznes ehtiyaclarınıza uyğun olaraq, ən optimal şərtlərlə yüksək keyfiyyətli mal və xidmətlərin tədarükünü peşəkarlıqla həyata keçiririk.</p>
                     </div>
                     <div class="service-item">
-                        <div class="icon"> zencir </div> <h3>Təchizat Zəncirinin İdarə Edilməsi</h3>
-                        <p>Effektiv təchizat zənciri strategiyaları ilə logistika, anbarlama və paylanma proseslərinizi optimallaşdırır, xərclərinizi azaldır və riskləri minimuma endiririk.</p>
+                        <span class="icon">🔗</span> <h4>Təchizat Zəncirinin İdarə Edilməsi</h4>
+                        <p>Logistika, anbarlama və paylanma daxil olmaqla bütün təchizat zəncirinizi optimallaşdırır, xərcləri azaldır və effektivliyi artırırıq.</p>
                     </div>
                      <div class="service-item">
-                        <div class="icon"> saheler </div> <h3>Müxtəlif Sahələr üzrə Həllər</h3>
-                        <p>Geniş təcrübəmiz və çevik yanaşmamız sayəsində tikinti, enerji, kənd təsərrüfatı, İT və digər bir çox sənaye sahələri üçün fərdi təchizat və satınalma həlləri təklif edirik.</p>
+                        <span class="icon">💡</span> <h4>Sahələr üzrə Fərdi Həllər</h4>
+                        <p>Geniş təcrübəmizə əsaslanaraq, müxtəlif sənaye sahələri (tikinti, enerji, İT və s.) üçün spesifik təchizat və satınalma strategiyaları təklif edirik.</p>
                     </div>
                 </div>
             </div>
@@ -491,23 +529,23 @@
 
         <section id="why-us">
             <div class="container">
-                <h2 class="section-title">Niyə Prime Trade Group?</h2>
+                <h2 class="section-title">Niyə Məhz Prime Trade Group?</h2>
                 <div class="why-us-grid">
                     <div class="why-us-item">
-                        <h3>Etibarlılıq və Şəffaflıq</h3>
-                        <p>Verdiyimiz sözə sadiq qalaraq, bütün əməliyyatlarımızda tam şəffaflıq təmin edir və öhdəliklərimizi vaxtında, yüksək keyfiyyətlə yerinə yetiririk.</p>
+                        <span class="icon">🛡️</span> <h4>Etibarlılıq və Şəffaflıq</h4>
+                        <p>Bütün əməliyyatlarımızda maksimum şəffaflığı təmin edir, götürdüyümüz öhdəlikləri zamanında və yüksək keyfiyyətlə yerinə yetiririk.</p>
                     </div>
                     <div class="why-us-item">
-                        <h3>Peşəkar Komanda</h3>
-                        <p>Sahəsində dərin biliyə və illərin təcrübəsinə malik mütəxəssislərdən ibarət komandamız hər bir layihəyə fərdi yanaşaraq optimal nəticələr əldə edir.</p>
+                        <span class="icon">👥</span> <h4>Peşəkar Komanda</h4>
+                        <p>Sahəsində dərin biliklərə və illərin təcrübəsinə malik mütəxəssislərimiz hər bir məsələyə fərdi yanaşaraq ən effektiv həlləri təklif edir.</p>
                     </div>
                     <div class="why-us-item">
-                        <h3>Müştəri Yönümlülük</h3>
-                        <p>Müştərilərimizin ehtiyaclarını diqqətlə dinləyir, onların hədəflərini anlayır və onlara ən uyğun, səmərəli həlləri təqdim etməyi prioritet hesab edirik.</p>
+                        <span class="icon">🎯</span> <h4>Müştəri Mərkəzli Yanaşma</h4>
+                        <p>Müştərilərimizin ehtiyaclarını və hədəflərini dərindən anlayaraq, onlara xüsusi hazırlanmış, səmərəli və innovativ həllər təqdim edirik.</p>
                     </div>
                     <div class="why-us-item">
-                        <h3>Strateji Tərəfdaşlıq</h3>
-                        <p>Biz sadəcə bir təchizatçı deyil, biznesinizin davamlı inkişafında sizinlə çiyin-çiyinə çalışan etibarlı və uzunmüddətli strateji tərəfdaşınız olmağı hədəfləyirik.</p>
+                        <span class="icon">🤝</span> <h4>Strateji Tərəfdaşlıq</h4>
+                        <p>Biz yalnız təchizatçı deyil, biznesinizin davamlı uğur qazanmasında sizinlə birlikdə addımlayan etibarlı strateji tərəfdaşınız olmağı hədəfləyirik.</p>
                     </div>
                 </div>
             </div>
@@ -515,34 +553,45 @@
 
         <section id="contact">
             <div class="container">
-                <div class="contact-info">
-                    <h2 class="section-title">Bizimlə Əlaqə</h2>
-                    <p>Layihələriniz, tenderlərdə iştirak və ya təchizat ehtiyaclarınızla bağlı suallarınız varsa, bizimlə əlaqə saxlamaqdan çəkinməyin. Sizə yardım etməkdən məmnun olarıq.</p>
-                    <p><strong>Ünvan:</strong> Azərbaycan, Bakı şəhəri, [Küçənizin Adı], [Bina №], AZ[Poçt İndeksi]</p>
-                    <p><strong>Telefon:</strong> +994 (XX) XXX XX XX</p>
-                    <p><strong>Email:</strong> info@primetradegroup.az</p>
-                    <p><strong>İş saatları:</strong> Bazar ertəsi - Cümə, 09:00 - 18:00</p>
-                </div>
-                <div class="contact-form-container">
-                    <h3 style="margin-bottom: 20px; text-align:center;">Bizə Yazın</h3>
-                    <form class="contact-form" action="#" method="POST"> <div>
-                            <label for="name" style="display:none;">Adınız:</label>
-                            <input type="text" id="name" name="name" placeholder="Adınız və Soyadınız" required>
+                <h2 class="section-title">Bizimlə Əlaqə Saxlayın</h2>
+                <div class="container-flex">
+                    <div class="contact-info">
+                        <h3>Əlaqə Məlumatları</h3>
+                        <p>Layihələriniz, tenderlərdə iştirak və ya təchizat ehtiyaclarınızla bağlı hər hansı bir sualınız varsa, bizimlə əlaqə saxlamaqdan çəkinməyin. Sizə kömək etməkdən məmnuniyyət duyarıq.</p>
+                        <div class="info-item">
+                            <span class="icon">📍</span>
+                            <p><strong>Ünvan:</strong> Azərbaycan, Bakı şəhəri, [Dəqiq Ünvanınızı Yazın], AZ[XXXX]</p>
                         </div>
-                        <div>
-                            <label for="email" style="display:none;">Email:</label>
-                            <input type="email" id="email" name="email" placeholder="Email Ünvanınız" required>
+                        <div class="info-item">
+                            <span class="icon">📞</span>
+                            <p><strong>Telefon:</strong> +994 (XX) XXX XX XX</p>
                         </div>
-                        <div>
-                            <label for="subject" style="display:none;">Mövzu:</label>
-                            <input type="text" id="subject" name="subject" placeholder="Mövzu" required>
+                        <div class="info-item">
+                            <span class="icon">✉️</span>
+                            <p><strong>Email:</strong> info@primetradegroup.az</p>
                         </div>
-                        <div>
-                            <label for="message" style="display:none;">Mesajınız:</label>
-                            <textarea id="message" name="message" placeholder="Mesajınızı buraya yazın..." required></textarea>
+                        <div class="info-item">
+                            <span class="icon">⏰</span>
+                            <p><strong>İş saatları:</strong> Bazar ertəsi - Cümə, 09:00 - 18:00</p>
                         </div>
-                        <button type="submit" class="btn">Göndər</button>
-                    </form>
+                    </div>
+                    <div class="contact-form-container">
+                        <h3>Sualınızı Göndərin</h3>
+                        <form class="contact-form" action="#" method="POST"> <div>
+                                <input type="text" id="name" name="name" placeholder="Adınız və Soyadınız *" required>
+                            </div>
+                            <div>
+                                <input type="email" id="email" name="email" placeholder="Email Ünvanınız *" required>
+                            </div>
+                            <div>
+                                <input type="text" id="subject" name="subject" placeholder="Mövzu *" required>
+                            </div>
+                            <div>
+                                <textarea id="message" name="message" placeholder="Mesajınız *" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Mesajı Göndər</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
@@ -551,25 +600,30 @@
     <footer class="footer">
         <div class="container">
             <p>&copy; <span id="currentYear"></span> Prime Trade Group. Bütün hüquqlar qorunur.</p>
-            <p>Dizayn və hazırlama <a href="mailto:your-developer-email@example.com" target="_blank">AI Assistant</a> tərəfindən.</p> </div>
+            <p><a href="#hero">Prime Trade Group</a> - Etibarlı Tərəfdaşınız.</p>
+        </div>
     </footer>
 
     <script>
-        // Mobil menyu üçün toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const navMenu = document.getElementById('navMenu');
-
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            // İkonu dəyişdirmək (opsional)
-            if (navMenu.classList.contains('active')) {
-                menuToggle.innerHTML = '✕'; // Bağlama ikonu
+        // Header scroll effekti
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
             } else {
-                menuToggle.innerHTML = '☰'; // Açma ikonu
+                header.classList.remove('scrolled');
             }
         });
 
-        // Menyudan bir linkə kliklədikdə mobil menyunu bağlamaq
+        // Mobil menyu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuToggle.innerHTML = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Mobil menyu linklərinə kliklədikdə menyunu bağlamaq
         const navLinks = document.querySelectorAll('.nav-menu ul li a');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -580,62 +634,48 @@
             });
         });
         
-        // Footer-da cari ili göstərmək
+        // Footer-da cari il
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Smooth scroll (opsional)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if(targetElement){
-                    let offset = 70; // Header hündürlüyü
-                    if (window.innerWidth <= 768 && targetId === '#hero') { // Mobildə hero üçün fərqli offset
-                         offset = 60;
-                    } else if (window.innerWidth <= 768) {
-                         offset = 60; // Mobildə digər bölmələr üçün header
-                    }
-
-                    const elementPosition = targetElement.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - offset;
-                
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: "smooth"
-                    });
-                }
-            });
-        });
-
-        // Aktiv naviqasiya linkini vurğulamaq (scroll zamanı)
+        // Aktiv naviqasiya linki (scroll zamanı)
         const sections = document.querySelectorAll("main section");
+        const headerHeight = document.getElementById('header').offsetHeight;
+
         window.addEventListener("scroll", () => {
-            let current = "";
+            let currentSectionId = "";
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                 // Header hündürlüyünü nəzərə alaq
-                if (pageYOffset >= (sectionTop - sectionHeight / 3 - 80)) {
-                    current = section.getAttribute("id");
+                if (pageYOffset >= sectionTop - headerHeight - (section.offsetHeight / 3) ) {
+                    currentSectionId = section.getAttribute("id");
                 }
             });
+            
+            // Hero bölməsi üçün xüsusi yoxlama (səhifənin ən yuxarısı)
+            if (pageYOffset < sections[0].offsetTop - headerHeight - (sections[0].offsetHeight / 3)) {
+                 currentSectionId = "hero";
+            }
 
-            navLinks.forEach(li_a => {
-                li_a.classList.remove("active");
-                if (li_a.getAttribute("href").substring(1) === current) {
-                    li_a.classList.add("active");
+
+            navLinks.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href").substring(1) === currentSectionId) {
+                    link.classList.add("active");
                 }
             });
-            // Əgər heç bir section aktiv deyilsə (məsələn, səhifənin yuxarısındayıqsa, Hero aktiv olsun)
-            if (!current && pageYOffset < window.innerHeight / 2) {
-                 const heroLink = document.querySelector('.nav-menu ul li a[href="#hero"]');
-                 if(heroLink) heroLink.classList.add('active');
+             // Əgər heç bir section aktiv deyilsə və ya hero yuxarıdadırsa
+            if (!currentSectionId && pageYOffset < window.innerHeight / 2) {
+                const heroLink = document.querySelector('.nav-menu ul li a[href="#hero"]');
+                if (heroLink && !heroLink.classList.contains('active')) {
+                    navLinks.forEach(l => l.classList.remove('active')); // Bütün digərlərini deaktiv et
+                    heroLink.classList.add('active');
+                }
             }
         });
+
+        // Səhifə yüklənəndə ilk aktiv linki təyin etmək
+        window.dispatchEvent(new Event('scroll'));
 
     </script>
 
 </body>
 </html>
-
