@@ -8,33 +8,31 @@
     <meta name="keywords" content="satınalma, təchizat zənciri, tender, logistika, prime trade group, Azərbaycan, şirkət, tədarük, idxal, ixrac">
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
         :root {
-            --prime-blue: #244874; /* Logo Dark Blue */
-            --prime-gray: #747F89; /* Logo Medium Gray */
-            --prime-silver: #C0C0C0; /* Silver */
-            --prime-light-silver: #f0f0f0; /* Lighter Silver for backgrounds */
+            --prime-blue: #244874;
+            --prime-gray: #747F89;
+            --prime-silver: #C0C0C0;
+            --prime-light-silver: #f0f0f0;
             --prime-dark-text: #333333;
             --prime-light-text: #ffffff;
-            --prime-accent: #007bff; /* A complementary accent if needed, can be adjusted */
         }
 
         html {
             scroll-behavior: smooth;
-            font-size: 16px; /* Base font size */
+            font-size: 16px;
         }
 
         body {
-            font-family: 'Arial', sans-serif; /* Or a more modern sans-serif font */
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--prime-light-silver);
             color: var(--prime-dark-text);
             line-height: 1.6;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-x: hidden; 
         }
 
         .container {
@@ -44,7 +42,6 @@
             padding: 0 15px;
         }
 
-        /* Header */
         header {
             background-color: var(--prime-light-text);
             padding: 1rem 0;
@@ -68,8 +65,18 @@
             align-items: center;
         }
 
+        .logo { /* Styling for the <a> tag wrapping the logo */
+            display: inline-block; 
+            min-height: 50px; /* Reserve space like image height */
+            line-height: 50px; /* Helps vertically align alt text */
+            color: var(--prime-blue); /* Style alt text if image fails */
+            font-weight: bold;
+            text-decoration: none;
+        }
         .logo img {
-            height: 50px; /* Adjust as needed */
+            height: 50px; 
+            display: block; /* Helps prevent extra space below image */
+            width: auto; /* Maintain aspect ratio */
         }
 
         nav ul {
@@ -79,12 +86,7 @@
             display: flex;
             align-items: center;
         }
-
-        nav ul li {
-            margin-left: 25px;
-            position: relative; /* For dropdown */
-        }
-
+        nav ul li { margin-left: 25px; position: relative; }
         nav ul li a {
             text-decoration: none;
             color: var(--prime-blue);
@@ -93,490 +95,214 @@
             transition: color 0.3s ease, background-color 0.3s ease;
             border-radius: 4px;
         }
-
         nav ul li a:hover, nav ul li a.active {
             color: var(--prime-light-text);
             background-color: var(--prime-gray);
         }
-        
-        .dropdown {
-            position: relative;
-        }
-
+        .dropdown { position: relative; }
         .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: var(--prime-light-text);
-            min-width: 220px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            border-radius: 4px;
-            padding: 0.5rem 0;
-            opacity: 0;
-            transform: translateY(10px);
+            display: none; position: absolute; background-color: var(--prime-light-text);
+            min-width: 220px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1; border-radius: 4px; padding: 0.5rem 0;
+            opacity: 0; transform: translateY(10px);
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
-        
-        .dropdown-content.show {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
+        .dropdown-content.show { display: block; opacity: 1; transform: translateY(0); }
         .dropdown-content a {
-            color: var(--prime-blue);
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            font-weight: normal;
-            white-space: nowrap;
+            color: var(--prime-blue); padding: 12px 16px; text-decoration: none;
+            display: block; font-weight: normal; white-space: nowrap;
         }
+        .dropdown-content a:hover { background-color: var(--prime-light-silver); color: var(--prime-blue); }
+        .dropdown .dropdown-toggle i { margin-left: 5px; transition: transform 0.3s ease; }
+        .dropdown.open .dropdown-toggle i { transform: rotate(180deg); }
 
-        .dropdown-content a:hover {
-            background-color: var(--prime-light-silver);
-            color: var(--prime-blue); /* Keep blue on hover for dropdown items */
-        }
-
-        .dropdown .dropdown-toggle i {
-            margin-left: 5px;
-            transition: transform 0.3s ease;
-        }
-
-        .dropdown.open .dropdown-toggle i {
-            transform: rotate(180deg);
-        }
-
-        /* Hamburger Menu */
-        .hamburger-menu {
-            display: none; /* Hidden by default, shown on mobile */
-            cursor: pointer;
-            z-index: 1001;
-        }
-
+        .hamburger-menu { display: none; cursor: pointer; z-index: 1001; }
         .hamburger-menu .bar {
-            display: block;
-            width: 25px;
-            height: 3px;
-            margin: 5px auto;
-            background-color: var(--prime-blue);
+            display: block; width: 25px; height: 3px;
+            margin: 5px auto; background-color: var(--prime-blue);
             transition: all 0.3s ease-in-out;
         }
-        
-        .hamburger-menu.active .bar:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
-        .hamburger-menu.active .bar:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger-menu.active .bar:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-        }
+        .hamburger-menu.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .hamburger-menu.active .bar:nth-child(2) { opacity: 0; }
+        .hamburger-menu.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-        /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(36, 72, 116, 0.8), rgba(36, 72, 116, 0.7)), url('https://images.unsplash.com/photo-1579532582937-16c1211933latency?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover; /* Replace with a relevant high-quality image */
+            background: linear-gradient(rgba(36, 72, 116, 0.8), rgba(36, 72, 116, 0.7)), url('https://images.unsplash.com/photo-1579532582937-16c1211933latency?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
             color: var(--prime-light-text);
-            padding: 180px 0 100px; /* Increased top padding due to fixed header */
-            text-align: center;
+            padding: 180px 0 100px;
+            text-align: center; 
             position: relative;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: center; 
+            width: 100%; /* Ensure hero takes full width */
+            box-sizing: border-box; /* Include padding in width calculation */
         }
         
-        .hero-content {
+        .hero-content { /* This is the .container */
             display: flex;
-            flex-direction: column; /* Stack text and Lottie */
-            align-items: center;
+            flex-direction: column;
+            align-items: center; /* This should center .hero-text and .lottie-container */
             gap: 20px;
+            width: 100%; /* Ensure hero-content uses the space given by container (90% or max-width) */
+            text-align: center; /* Ensure text alignment is explicitly center */
         }
 
         .hero-text {
             max-width: 700px;
+            width: 100%; /* Use available width, constrained by parent's max-width */
+            text-align: center; /* Explicitly center its inner content */
+        }
+        .hero-text h1, .hero-text p {
+             text-align: center; /* Reinforce centering */
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: bold;
+            font-size: 3rem; margin-bottom: 1rem; font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-
-        .hero .lottie-container {
-            width: 250px; /* Adjust size as needed */
-            height: 250px;
-        }
+        .hero p { font-size: 1.3rem; margin-bottom: 2rem; font-weight: 300; }
+        .hero .lottie-container { width: 250px; height: 250px; margin: 0 auto; /* Center Lottie too */}
 
         .btn {
-            background-color: var(--prime-gray);
-            color: var(--prime-light-text);
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            border: none;
-            cursor: pointer;
+            background-color: var(--prime-gray); color: var(--prime-light-text);
+            padding: 12px 25px; text-decoration: none; border-radius: 5px;
+            font-weight: bold; transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none; cursor: pointer; display: inline-block; /* For proper spacing and centering */
+            margin: 5px; /* Add some margin for multiple buttons */
         }
-
-        .btn:hover {
-            background-color: var(--prime-blue);
-            transform: translateY(-2px);
-        }
-        
+        .btn:hover { background-color: var(--prime-blue); transform: translateY(-2px); }
         .btn-secondary {
-            background-color: transparent;
-            border: 2px solid var(--prime-silver);
+            background-color: transparent; border: 2px solid var(--prime-silver);
             color: var(--prime-silver);
         }
-        .btn-secondary:hover {
-            background-color: var(--prime-silver);
-            color: var(--prime-dark-text);
-        }
+        .btn-secondary:hover { background-color: var(--prime-silver); color: var(--prime-dark-text); }
 
-
-        /* Sections Styling */
-        section {
-            padding: 60px 0;
-        }
-
-        section:nth-child(even) {
-            background-color: var(--prime-light-text);
-        }
-        
+        section { padding: 60px 0; }
+        section:nth-child(even) { background-color: var(--prime-light-text); }
         .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 2.2rem;
-            color: var(--prime-blue);
-            font-weight: bold;
-            position: relative;
+            text-align: center; margin-bottom: 40px; font-size: 2.2rem;
+            color: var(--prime-blue); font-weight: bold; position: relative;
         }
         .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background-color: var(--prime-gray);
-            margin: 10px auto 0;
-            border-radius: 2px;
+            content: ''; display: block; width: 60px; height: 3px;
+            background-color: var(--prime-gray); margin: 10px auto 0; border-radius: 2px;
         }
 
-        /* About Us Section */
-        #haqqimizda .about-content {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 40px;
-        }
-        #haqqimizda .about-text {
-            flex: 1;
-            min-width: 300px;
-        }
-        #haqqimizda .about-lottie {
-            flex: 1;
-            min-width: 300px;
-            max-width: 400px; /* Control Lottie size */
-            margin: 0 auto;
-        }
-        #haqqimizda .about-lottie .lottie-container {
-            width: 100%;
-            height: auto;
-        }
+        #haqqimizda .about-content { display: flex; flex-wrap: wrap; align-items: center; gap: 40px; }
+        #haqqimizda .about-text { flex: 1; min-width: 300px; }
+        #haqqimizda .about-lottie { flex: 1; min-width: 300px; max-width: 400px; margin: 0 auto; }
+        #haqqimizda .about-lottie .lottie-container { width: 100%; height: auto; }
 
-        /* Services Section */
-        #xidmetler .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
+        #xidmetler .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .service-card {
-            background-color: var(--prime-light-text);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            text-align: center;
+            background-color: var(--prime-light-text); padding: 30px; border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(36, 72, 116, 0.15);
-        }
-        .service-card .service-icon {
-            font-size: 3rem;
-            color: var(--prime-blue);
-            margin-bottom: 20px;
-        }
-        .service-card h3 {
-            font-size: 1.5rem;
-            color: var(--prime-blue);
-            margin-bottom: 15px;
-        }
-        .service-card p {
-            font-size: 0.95rem;
-            color: var(--prime-dark-text);
-            line-height: 1.7;
-        }
-        .service-card .lottie-container {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 15px auto;
-        }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 8px 25px rgba(36, 72, 116, 0.15); }
+        .service-card .service-icon { font-size: 3rem; color: var(--prime-blue); margin-bottom: 20px; }
+        .service-card h3 { font-size: 1.5rem; color: var(--prime-blue); margin-bottom: 15px; }
+        .service-card p { font-size: 0.95rem; color: var(--prime-dark-text); line-height: 1.7; }
+        .service-card .lottie-container { width: 100px; height: 100px; margin: 0 auto 15px auto; }
 
-
-        /* Why Choose Us Section */
-        #niye-biz {
-            background-color: var(--prime-blue); /* Darker background */
-            color: var(--prime-light-text);
-        }
-        #niye-biz .section-title {
-            color: var(--prime-light-text);
-        }
-        #niye-biz .section-title::after {
-            background-color: var(--prime-silver);
-        }
-        #niye-biz .reasons-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
+        #niye-biz { background-color: var(--prime-blue); color: var(--prime-light-text); }
+        #niye-biz .section-title { color: var(--prime-light-text); }
+        #niye-biz .section-title::after { background-color: var(--prime-silver); }
+        #niye-biz .reasons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         .reason-item {
-            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white */
-            padding: 25px;
-            border-radius: 8px;
-            display: flex;
-            align-items: flex-start; /* Align icon and text to top */
-            gap: 15px;
+            background-color: rgba(255, 255, 255, 0.1); padding: 25px; border-radius: 8px;
+            display: flex; align-items: flex-start; gap: 15px;
             transition: background-color 0.3s ease;
         }
-        .reason-item:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        .reason-item .reason-icon {
-            font-size: 2rem;
-            color: var(--prime-silver);
-            flex-shrink: 0; /* Prevent icon from shrinking */
-            margin-top: 5px; /* Align icon better with text */
-        }
-        .reason-item h4 {
-            margin: 0 0 10px 0;
-            font-size: 1.2rem;
-            color: var(--prime-light-text);
-        }
-        .reason-item p {
-            margin: 0;
-            font-size: 0.9rem;
-            color: var(--prime-light-silver); /* Lighter text for contrast */
-        }
+        .reason-item:hover { background-color: rgba(255, 255, 255, 0.2); }
+        .reason-item .reason-icon { font-size: 2rem; color: var(--prime-silver); flex-shrink: 0; margin-top: 5px; }
+        .reason-item h4 { margin: 0 0 10px 0; font-size: 1.2rem; color: var(--prime-light-text); }
+        .reason-item p { margin: 0; font-size: 0.9rem; color: var(--prime-light-silver); }
 
-        /* Contact Section */
-        #elaqe .contact-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-        #elaqe .contact-info, #elaqe .contact-form-container {
-            flex: 1;
-            min-width: 300px;
-        }
-        #elaqe .contact-info p {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-        #elaqe .contact-info i {
-            color: var(--prime-blue);
-            margin-right: 10px;
-            width: 20px; /* Align icons */
-        }
+        #elaqe .contact-container { display: flex; flex-wrap: wrap; gap: 30px; }
+        #elaqe .contact-info, #elaqe .contact-form-container { flex: 1; min-width: 300px; }
+        #elaqe .contact-info p { margin-bottom: 15px; font-size: 1.1rem; }
+        #elaqe .contact-info i { color: var(--prime-blue); margin-right: 10px; width: 20px; }
         #elaqe .contact-form input, #elaqe .contact-form textarea {
-            width: calc(100% - 22px); /* Account for padding and border */
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid var(--prime-silver);
-            border-radius: 4px;
-            font-size: 1rem;
+            width: calc(100% - 22px); padding: 12px; margin-bottom: 15px;
+            border: 1px solid var(--prime-silver); border-radius: 4px; font-size: 1rem;
         }
-        #elaqe .contact-form textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-        #elaqe .contact-form button {
-            width: 100%;
-        }
-        
-        .contact-service-link {
-            display: inline-block;
-            margin-top: 10px;
-            font-size: 0.9em;
-            color: var(--prime-gray);
-        }
-        .contact-service-link:hover {
-            color: var(--prime-blue);
-            text-decoration: underline;
-        }
+        #elaqe .contact-form textarea { resize: vertical; min-height: 120px; }
+        #elaqe .contact-form button { width: 100%; }
+        .contact-service-link { display: inline-block; margin-top: 10px; font-size: 0.9em; color: var(--prime-gray); }
+        .contact-service-link:hover { color: var(--prime-blue); text-decoration: underline; }
 
+        #xəritə { padding: 0; margin-bottom: -7px; /* Adjusted for potential iframe border issues */ }
+        #xəritə iframe { display: block; /* Helps prevent extra space */ width: 100%; height: 450px; border: 0; }
 
-        /* Map Section */
-        #xəritə {
-            padding: 0; /* Full width map, no padding */
-            margin-bottom: -7px; /* Overlap slightly with footer if footer has top padding */
-        }
-        #xəritə iframe {
-            width: 100%;
-            height: 450px;
-            border: 0;
-        }
-
-        /* Footer */
         footer {
-            background-color: var(--prime-dark-text); /* Darker footer */
-            color: var(--prime-light-silver);
-            text-align: center;
-            padding: 30px 0;
+            background-color: var(--prime-dark-text); color: var(--prime-light-silver);
+            text-align: center; padding: 30px 0;
         }
-        footer p {
-            margin: 0.5rem 0;
-        }
-        footer .social-icons a {
-            color: var(--prime-light-silver);
-            margin: 0 10px;
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
-        }
-        footer .social-icons a:hover {
-            color: var(--prime-silver);
-        }
+        footer p { margin: 0.5rem 0; }
+        footer .social-icons a { color: var(--prime-light-silver); margin: 0 10px; font-size: 1.5rem; transition: color 0.3s ease; }
+        footer .social-icons a:hover { color: var(--prime-silver); }
 
-        /* Scroll to Top Button */
         .scroll-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--prime-blue);
-            color: var(--prime-light-text);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 45px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: none; /* Hidden by default */
-            z-index: 999;
-            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
+            position: fixed; bottom: 20px; right: 20px; background-color: var(--prime-blue);
+            color: var(--prime-light-text); width: 45px; height: 45px; border-radius: 50%;
+            text-align: center; line-height: 45px; font-size: 1.5rem; cursor: pointer;
+            display: none; z-index: 999; transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+            opacity: 0; visibility: hidden; transform: translateY(20px);
         }
-        .scroll-to-top.show {
-            display: block;
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .scroll-to-top:hover {
-            background-color: var(--prime-gray);
-        }
+        .scroll-to-top.show { display: block; opacity: 1; visibility: visible; transform: translateY(0); }
+        .scroll-to-top:hover { background-color: var(--prime-gray); }
 
-        /* Responsive Design */
         @media (max-width: 992px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero p { font-size: 1.1rem; }
+            .hero h1 { font-size: 2.5rem; } .hero p { font-size: 1.1rem; }
             .hero .lottie-container { width: 200px; height: 200px; }
             #haqqimizda .about-content { flex-direction: column; }
             #haqqimizda .about-lottie { max-width: 350px; margin-top: 30px;}
         }
-
         @media (max-width: 768px) {
             html { font-size: 15px; }
             nav ul {
-                display: none; /* Hide main nav links */
-                flex-direction: column;
-                position: absolute;
-                top: 100%; /* Position below header */
-                left: 0;
-                width: 100%;
-                background-color: var(--prime-light-text);
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-                padding: 1rem 0;
-                transform: translateY(-10px);
-                opacity: 0;
+                display: none; flex-direction: column; position: absolute;
+                top: 100%; left: 0; width: 100%;
+                background-color: var(--prime-light-text); box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 1rem 0; transform: translateY(-10px); opacity: 0;
                 transition: transform 0.3s ease-out, opacity 0.3s ease-out;
             }
-            nav ul.active {
-                display: flex;
-                transform: translateY(0);
-                opacity: 1;
+            nav ul.active { display: flex; transform: translateY(0); opacity: 1; }
+            nav ul li { margin: 0; width: 100%; text-align: center; }
+            nav ul li a { display: block; padding: 1rem; border-bottom: 1px solid var(--prime-light-silver); }
+            nav ul li:last-child a { border-bottom: none; }
+            .dropdown-content {
+                position: static; box-shadow: none; background-color: var(--prime-light-silver);
+                display: none; opacity: 1; transform: none; width: 100%;
             }
-            nav ul li {
-                margin: 0;
-                width: 100%;
-                text-align: center;
-            }
-            nav ul li a {
-                display: block;
-                padding: 1rem;
-                border-bottom: 1px solid var(--prime-light-silver);
-            }
-            nav ul li:last-child a {
-                border-bottom: none;
-            }
-            .dropdown-content { /* Adjust dropdown for mobile */
-                position: static; /* No absolute positioning */
-                box-shadow: none;
-                background-color: var(--prime-light-silver); /* Slightly different background */
-                display: none; /* Controlled by JS directly or different class */
-                opacity: 1;
-                transform: none;
-                width: 100%;
-            }
-            .dropdown-content a {
-                padding-left: 2rem; /* Indent dropdown items */
-            }
-            .dropdown.open .dropdown-content { /* Simpler show for mobile */
-                 display: block;
-            }
-            
-            .hamburger-menu {
-                display: block; /* Show hamburger */
-            }
+            .dropdown-content a { padding-left: 2rem; }
+            .dropdown.open .dropdown-content { display: block; }
+            .hamburger-menu { display: block; }
 
             .hero { padding: 150px 0 80px; }
-            .hero h1 { font-size: 2rem; }
-            .hero p { font-size: 1rem; }
-
+            .hero h1 { font-size: 2rem; } .hero p { font-size: 1rem; }
             .section-title { font-size: 1.8rem; }
             #elaqe .contact-container { flex-direction: column; }
-            
-            .service-card { padding: 20px; }
-            .service-card h3 { font-size: 1.3rem; }
+            .service-card { padding: 20px; } .service-card h3 { font-size: 1.3rem; }
         }
-        
         @media (max-width: 576px) {
-            .container { width: 95%; }
-            .hero h1 { font-size: 1.8rem; }
-            .hero p { font-size: 0.9rem; }
+            .container { width: 95%; padding: 0 10px; /* Adjust padding for very small screens */ }
+            .hero h1 { font-size: 1.8rem; } .hero p { font-size: 0.9rem; }
             .hero .lottie-container { width: 150px; height: 150px; }
-            .btn { padding: 10px 20px; font-size: 0.9rem; }
-            
-            #services .services-grid { grid-template-columns: 1fr; } /* Single column for services on small screens */
+            .btn { padding: 10px 15px; font-size: 0.9rem; } /* Adjust button padding */
+            #xidmetler .services-grid { grid-template-columns: 1fr; }
             #niye-biz .reasons-grid { grid-template-columns: 1fr; }
             .scroll-to-top { width: 40px; height: 40px; line-height: 40px; font-size: 1.2rem; }
         }
-
     </style>
 </head>
 <body>
 
     <header id="main-header">
         <div class="container header-content">
-            <a href="#" class="logo">
+            <a href="#hero" class="logo">
                 <img src="ptglogo.png" alt="Prime Trade Group Logo">
             </a>
             <nav id="main-nav">
@@ -597,9 +323,7 @@
                 </ul>
             </nav>
             <div class="hamburger-menu" id="hamburger-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+                <span class="bar"></span> <span class="bar"></span> <span class="bar"></span>
             </div>
         </div>
     </header>
@@ -610,10 +334,9 @@
                 <h1>Prime Trade Group: Təchizatda Strateji Həllər, Qlobal İmkanlar.</h1>
                 <p>Satınalma, təchizat zənciri və tender proseslərinizdə effektivliyi və şəffaflığı artırmaq üçün etibarlı tərəfdaşınız.</p>
                 <a href="#elaqe" class="btn">Bizimlə Əlaqə</a>
-                <a href="#xidmetler" class="btn btn-secondary" style="margin-left:10px;">Xidmətlərimiz</a>
+                <a href="#xidmetler" class="btn btn-secondary">Xidmətlərimiz</a>
             </div>
-            <div class="lottie-container" id="hero-lottie" data-aos="fade-left" data-aos-delay="300">
-                </div>
+            <div class="lottie-container" id="hero-lottie" data-aos="fade-left" data-aos-delay="300"></div>
         </div>
     </section>
 
@@ -624,11 +347,9 @@
                 <div class="about-text" data-aos="fade-right">
                     <p><strong>Prime Trade Group</strong> Azərbaycanda və regionda fəaliyyət göstərən şirkətlərə yüksək keyfiyyətli satınalma, təchizat zəncirinin optimallaşdırılması və tender məsləhətçiliyi xidmətləri təqdim edir. Məqsədimiz müştərilərimizin əməliyyat xərclərini azaltmaq, səmərəliliyi artırmaq və bazarda rəqabət üstünlüyü əldə etmələrinə dəstək olmaqdır.</p>
                     <p>Peşəkar komandamızın dərin bilik və təcrübəsi, eləcə də müasir texnologiyalardan istifadə sayəsində hər bir müştərimizə fərdi yanaşma təmin edirik. Etibarlılıq, şəffaflıq və nəticəyönümlülük bizim əsas prinsiplərimizdir.</p>
-                    <p>Biz inanırıq ki, uğurlu tərəfdaşlıq qarşılıqlı etimada və ümumi məqsədlərə əsaslanır. Prime Trade Group olaraq, biznesinizin böyüməsi və inkişafı üçün lazımi dəstəyi göstərməyə hazırıq.</p>
                 </div>
                 <div class="about-lottie" data-aos="fade-left" data-aos-delay="200">
-                    <div class="lottie-container" id="about-lottie">
-                        </div>
+                    <div class="lottie-container" id="about-lottie"></div>
                 </div>
             </div>
         </div>
@@ -642,28 +363,28 @@
                     <div class="lottie-container" id="service-lottie-satinalma"></div>
                     <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
                     <h3>Satınalma Xidmətləri</h3>
-                    <p>Şirkətinizin ehtiyaclarına uyğun olaraq strateji satınalma planlarının hazırlanması, təchizatçıların seçilməsi, qiymət danışıqları və müqavilələrin idarə edilməsi. Xərclərin optimallaşdırılması və keyfiyyətli məhsul/xidmət təminatı.</p>
+                    <p>Şirkətinizin ehtiyaclarına uyğun olaraq strateji satınalma planlarının hazırlanması, təchizatçıların seçilməsi, qiymət danışıqları və müqavilələrin idarə edilməsi.</p>
                     <a href="#elaqe" class="contact-service-link">Bu xidmət barədə sorğu göndər <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card" id="service-techizat" data-aos="fade-up" data-aos-delay="200">
                     <div class="lottie-container" id="service-lottie-techizat"></div>
                     <div class="service-icon"><i class="fas fa-network-wired"></i></div>
                     <h3>Təchizat Zəncirinin İdarə Edilməsi</h3>
-                    <p>Anbar idarəçiliyi, logistika, inventar nəzarəti və paylanma daxil olmaqla təchizat zəncirinizin bütün mərhələlərinin səmərəli şəkildə idarə olunması. Risklərin azaldılması və çevikliyin artırılması.</p>
+                    <p>Anbar idarəçiliyi, logistika, inventar nəzarəti və paylanma daxil olmaqla təchizat zəncirinizin bütün mərhələlərinin səmərəli şəkildə idarə olunması.</p>
                      <a href="#elaqe" class="contact-service-link">Bu xidmət barədə sorğu göndər <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card" id="service-tender" data-aos="fade-up" data-aos-delay="300">
                      <div class="lottie-container" id="service-lottie-tender"></div>
                     <div class="service-icon"><i class="fas fa-file-signature"></i></div>
                     <h3>Tender Məsləhətçiliyi</h3>
-                    <p>Dövlət və özəl sektor tenderlərində iştirak üçün tam dəstək: tender sənədlərinin hazırlanması, təkliflərin tərtibi, uyğunluq yoxlanışı və tender prosesinin izlənilməsi. Qazanma şansınızı artırın!</p>
+                    <p>Dövlət və özəl sektor tenderlərində iştirak üçün tam dəstək: tender sənədlərinin hazırlanması, təkliflərin tərtibi, uyğunluq yoxlanışı və tender prosesinin izlənilməsi.</p>
                      <a href="#elaqe" class="contact-service-link">Bu xidmət barədə sorğu göndər <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card" id="service-logistika" data-aos="fade-up" data-aos-delay="400">
                      <div class="lottie-container" id="service-lottie-logistika"></div>
                     <div class="service-icon"><i class="fas fa-truck-fast"></i></div>
                     <h3>Logistika və Daşınma</h3>
-                    <p>Yerli və beynəlxalq daşımaların təşkili, gömrük rəsmiləşdirilməsi və yüklərin təhlükəsiz çatdırılması. Optimal marşrutların seçilməsi və nəqliyyat xərclərinin minimuma endirilməsi.</p>
+                    <p>Yerli və beynəlxalq daşımaların təşkili, gömrük rəsmiləşdirilməsi və yüklərin təhlükəsiz çatdırılması. Optimal marşrutların seçilməsi.</p>
                      <a href="#elaqe" class="contact-service-link">Bu xidmət barədə sorğu göndər <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
@@ -676,64 +397,43 @@
             <div class="reasons-grid">
                 <div class="reason-item" data-aos="fade-right" data-aos-delay="100">
                     <div class="reason-icon"><i class="fas fa-medal"></i></div>
-                    <div>
-                        <h4>Peşəkarlıq və Təcrübə</h4>
-                        <p>Sahəsində illərin təcrübəsinə malik mütəxəssislərimizlə sizə ən yüksək səviyyədə xidmət göstəririk.</p>
-                    </div>
+                    <div><h4>Peşəkarlıq və Təcrübə</h4><p>Sahəsində illərin təcrübəsinə malik mütəxəssislərimizlə sizə ən yüksək səviyyədə xidmət göstəririk.</p></div>
                 </div>
                 <div class="reason-item" data-aos="fade-right" data-aos-delay="200">
                     <div class="reason-icon"><i class="fas fa-handshake-angle"></i></div>
-                    <div>
-                        <h4>Fərdi Yanaşma</h4>
-                        <p>Hər bir müştərinin unikal ehtiyaclarını anlayır və onlara xüsusi həllər təklif edirik.</p>
-                    </div>
+                    <div><h4>Fərdi Yanaşma</h4><p>Hər bir müştərinin unikal ehtiyaclarını anlayır və onlara xüsusi həllər təklif edirik.</p></div>
                 </div>
                 <div class="reason-item" data-aos="fade-right" data-aos-delay="300">
                     <div class="reason-icon"><i class="fas fa-chart-line"></i></div>
-                    <div>
-                        <h4>Nəticəyönümlülük</h4>
-                        <p>Əsas məqsədimiz sizin biznesiniz üçün ölçüləbilən nəticələr əldə etməkdir.</p>
-                    </div>
+                    <div><h4>Nəticəyönümlülük</h4><p>Əsas məqsədimiz sizin biznesiniz üçün ölçüləbilən nəticələr əldə etməkdir.</p></div>
                 </div>
                 <div class="reason-item" data-aos="fade-left" data-aos-delay="100">
                     <div class="reason-icon"><i class="fas fa-shield-alt"></i></div>
-                    <div>
-                        <h4>Etibarlılıq və Şəffaflıq</h4>
-                        <p>Bütün proseslərimizdə tam şəffaflığı təmin edir və etibarlı tərəfdaşınız oluruq.</p>
-                    </div>
+                    <div><h4>Etibarlılıq və Şəffaflıq</h4><p>Bütün proseslərimizdə tam şəffaflığı təmin edir və etibarlı tərəfdaşınız oluruq.</p></div>
                 </div>
                 <div class="reason-item" data-aos="fade-left" data-aos-delay="200">
                     <div class="reason-icon"><i class="fas fa-globe"></i></div>
-                    <div>
-                        <h4>Qlobal Şəbəkə</h4>
-                        <p>Geniş tərəfdaş şəbəkəmiz sayəsində qlobal miqyasda effektiv təchizat imkanları yaradırıq.</p>
-                    </div>
+                    <div><h4>Qlobal Şəbəkə</h4><p>Geniş tərəfdaş şəbəkəmiz sayəsində qlobal miqyasda effektiv təchizat imkanları yaradırıq.</p></div>
                 </div>
                 <div class="reason-item" data-aos="fade-left" data-aos-delay="300">
-                    <div class="lottie-container" id="why-us-lottie" style="width:50px; height:50px;">
-                        </div>
-                    <div>
-                        <h4>Yenilikçi Həllər</h4>
-                        <p>Davamlı olaraq ən son texnologiya və metodlardan istifadə edərək innovativ həllər təqdim edirik.</p>
-                    </div>
+                    <div class="lottie-container" id="why-us-lottie" style="width:50px; height:50px; flex-shrink:0;"></div>
+                    <div><h4>Yenilikçi Həllər</h4><p>Davamlı olaraq ən son texnologiya və metodlardan istifadə edərək innovativ həllər təqdim edirik.</p></div>
                 </div>
             </div>
         </div>
     </section>
     
     <section id="cta" style="background-color: var(--prime-light-silver);">
-        <div class="container text-center" data-aos="zoom-in">
+        <div class="container text-center" data-aos="zoom-in" style="text-align:center;">
             <h2 class="section-title">Biznesinizi Növbəti Səviyyəyə Daşıyın</h2>
-            <p style="font-size: 1.1rem; max-width: 700px; margin: 0 auto 30px auto;">Prime Trade Group ilə təchizat proseslərinizi optimallaşdıraraq xərclərinizi azaldın və səmərəliliyinizi artırın. Peşəkar komandamız sizə dəstək olmağa hazırdır.</p>
-            <div id="cta-lottie" class="lottie-container" style="width: 200px; height: 150px; margin: 0 auto 20px auto;">
-                </div>
+            <p style="font-size: 1.1rem; max-width: 700px; margin: 0 auto 30px auto;">Prime Trade Group ilə təchizat proseslərinizi optimallaşdıraraq xərclərinizi azaldın və səmərəliliyinizi artırın.</p>
+            <div id="cta-lottie" class="lottie-container" style="width: 200px; height: 150px; margin: 0 auto 20px auto;"></div>
             <a href="#elaqe" class="btn">Pulsuz Məsləhət Alın</a>
         </div>
     </section>
 
     <section id="xəritə" data-aos="fade-up">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3039.748137992081!2d49.85099191539484!3d40.37023707937018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d079efb5163%3A0xc202bf45e7219270!2sBaku%2C%20Azerbaijan!5e0!3m2!1sen!2saz!4v1622735308543!5m2!1sen!2saz" 
-        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d194347.5961164898!2d49.69011979589842!3d40.39080321510503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d455abf5913%3A0x73d17611960647f4!2sBaku%2C%20Azerbaijan!5e0!3m2!1sen!2s!4v1717432055185!5m2!1sen!2s" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </section>
 
     <section id="elaqe">
@@ -742,11 +442,10 @@
             <div class="contact-container">
                 <div class="contact-info" data-aos="fade-right">
                     <h3>Əlaqə Məlumatları</h3>
-                    <p>Bizimlə əlaqə saxlamaqdan çəkinməyin. Suallarınızı və təkliflərinizi gözləyirik.</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Ünvan: Bakı şəh., Azərbaycan, AZ1000 (Nümunə Ünvan)</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Ünvan: Bakı şəh., Azərbaycan, AZ1000 (Nümunə)</p>
                     <p><i class="fas fa-phone"></i> Telefon: +994 (XX) XXX XX XX</p>
                     <p><i class="fas fa-envelope"></i> Email: info@primetradegroup.az</p>
-                    <p><i class="fas fa-clock"></i> İş Saatları: Bazar ertəsi - Cümə, 09:00 - 18:00</p>
+                    <p><i class="fas fa-clock"></i> İş Saatları: B.e. - Cümə, 09:00 - 18:00</p>
                     <div class="social-icons" style="margin-top: 20px;">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -770,8 +469,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; <span id="currentYear"></span> Prime Trade Group. Bütün hüquqlar qorunur.</p>
-            <p>Azərbaycanda Təchizat və Satınalma üzrə Etibarlı Tərəfdaşınız.</p>
+            <p>© <span id="currentYear"></span> Prime Trade Group. Bütün hüquqlar qorunur.</p>
             <div class="social-icons">
                 <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -780,85 +478,44 @@
         </div>
     </footer>
 
-    <a href="#" class="scroll-to-top" id="scrollToTopButton" aria-label="Yuxarı Qalx">
-        <i class="fas fa-arrow-up"></i>
-    </a>
+    <a href="#" class="scroll-to-top" id="scrollToTopButton" aria-label="Yuxarı Qalx"><i class="fas fa-arrow-up"></i></a>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js" integrity="sha512-jEn7rlQDchqfLrzJECiSAHayWIUFGE5nM+wslthegoXT+l37nx4NuBhevLwalkerAYjEHtlSavAAD六DGSBf/+Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800, // values from 0 to 3000, with step 50ms
-            once: false, // whether animation should happen only once - while scrolling down
+        AOS.init({ duration: 800, once: false });
+
+        const lottieConfigs = [
+            { id: 'hero-lottie', path: 'https://lottie.host/b7d9292a-7a77-4f09-8f9a-e58b8a418f13/K44WWVpcLq.json' }, // Global network
+            { id: 'about-lottie', path: 'https://lottie.host/3c75f000-7a30-49f2-943a-3e0861c72e3e/Kj8g7oJ7z3.json' }, // Teamwork/Growth
+            { id: 'service-lottie-satinalma', path: 'https://lottie.host/23737930-3e08-40a7-a901-1189cd9ff60e/31gJkQYgyl.json' }, // Gears/Process
+            { id: 'service-lottie-techizat', path: 'https://lottie.host/303b9d61-1a61-4d6c-9d29-d3b444851a67/B8aWVEKkXN.json' }, // Supply chain/Network
+            { id: 'service-lottie-tender', path: 'https://lottie.host/92b9123f-47f2-45f5-8979-f11067682fc8/Yf20vyY6gM.json' }, // Document/Agreement
+            { id: 'service-lottie-logistika', path: 'https://lottie.host/5e296e87-72f9-4099-9860-4ac00f0a9173/VAPUfGkIjw.json' }, // Logistics/Shipping
+            { id: 'why-us-lottie', path: 'https://lottie.host/501a2119-2bb7-4a6f-89f0-14e6c28e5e0e/3kP8e4XDoC.json' }, // Small checkmark or similar
+            { id: 'cta-lottie', path: 'https://lottie.host/e9f00708-21b0-4237-bb99-e830335123ae/dJcLsD3K1Z.json' } // Rocket/Growth
+        ];
+
+        lottieConfigs.forEach(config => {
+            const container = document.getElementById(config.id);
+            if (container) {
+                lottie.loadAnimation({
+                    container: container,
+                    renderer: 'svg',
+                    loop: true,
+                    autoplay: true,
+                    path: config.path
+                });
+            }
         });
 
-        // Lottie Animations
-        // Replace these with your actual Lottie JSON file paths or URLs
-        const heroLottie = lottie.loadAnimation({
-            container: document.getElementById('hero-lottie'),
-            renderer: 'svg', // or 'canvas', 'html'
-            loop: true,
-            autoplay: true,
-            path: 'https://lottie.host/b7d9292a-7a77-4f09-8f9a-e58b8a418f13/K44WWVpcLq.json' // Example: Global network
-        });
-        
-        const aboutLottie = lottie.loadAnimation({
-            container: document.getElementById('about-lottie'),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: 'https://lottie.host/3c75f000-7a30-49f2-943a-3e0861c72e3e/Kj8g7oJ7z3.json' // Example: Teamwork/Growth
-        });
-        
-        const serviceLottieSatinalma = lottie.loadAnimation({
-            container: document.getElementById('service-lottie-satinalma'),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: 'https://lottie.host/23737930-3e08-40a7-a901-1189cd9ff60e/31gJkQYgyl.json' // Example: Gears/Process
-        });
-        const serviceLottieTechizat = lottie.loadAnimation({
-            container: document.getElementById('service-lottie-techizat'),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: 'https://lottie.host/303b9d61-1a61-4d6c-9d29-d3b444851a67/B8aWVEKkXN.json' // Example: Supply chain/Network
-        });
-         const serviceLottieTender = lottie.loadAnimation({
-            container: document.getElementById('service-lottie-tender'),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: 'https://lottie.host/92b9123f-47f2-45f5-8979-f11067682fc8/Yf20vyY6gM.json' // Example: Document/Agreement
-        });
-         const serviceLottieLogistika = lottie.loadAnimation({
-            container: document.getElementById('service-lottie-logistika'),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: 'https://lottie.host/5e296e87-72f9-4099-9860-4ac00f0a9173/VAPUfGkIjw.json' // Example: Logistics/Shipping
-        });
-         const ctaLottie = lottie.loadAnimation({
-            container: document.getElementById('cta-lottie'),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: 'https://lottie.host/e9f00708-21b0-4237-bb99-e830335123ae/dJcLsD3K1Z.json' // Example: Rocket/Growth
-        });
-
-
-        // Hamburger Menu Toggle
         const hamburger = document.getElementById('hamburger-menu');
         const navUl = document.querySelector('nav ul');
-
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navUl.classList.toggle('active');
         });
-
-        // Close mobile menu when a link is clicked
         document.querySelectorAll('nav ul li a').forEach(link => {
             link.addEventListener('click', () => {
                 if (navUl.classList.contains('active')) {
@@ -868,102 +525,72 @@
             });
         });
         
-        // Dropdown Menu
         const dropdownToggle = document.querySelector('.dropdown-toggle');
         const dropdownContent = document.querySelector('.dropdown-content');
         const dropdown = document.querySelector('.dropdown');
-
         if (dropdownToggle) {
             dropdownToggle.addEventListener('click', function(e) {
-                e.preventDefault(); // Prevent page jump if href="#"
-                const parentDropdown = this.parentElement; // Get the .dropdown element
-                parentDropdown.classList.toggle('open');
+                e.preventDefault(); 
+                this.parentElement.classList.toggle('open');
                 dropdownContent.classList.toggle('show');
             });
         }
-        
-        // Close dropdown if clicked outside
         window.addEventListener('click', function(e) {
-            if (!dropdown.contains(e.target)) {
-                if (dropdownContent.classList.contains('show')) {
+            if (dropdown && !dropdown.contains(e.target)) {
+                if (dropdownContent && dropdownContent.classList.contains('show')) {
                     dropdownContent.classList.remove('show');
                     dropdown.classList.remove('open');
                 }
             }
         });
 
-
-        // Scroll to Top Button
         const scrollToTopBtn = document.getElementById('scrollToTopButton');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollToTopBtn.classList.add('show');
-            } else {
-                scrollToTopBtn.classList.remove('show');
-            }
+            if (window.scrollY > 300) scrollToTopBtn.classList.add('show');
+            else scrollToTopBtn.classList.remove('show');
         });
         scrollToTopBtn.addEventListener('click', (e) => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
         
-        // Header scroll effect
         const header = document.getElementById('main-header');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('header-scrolled');
-            } else {
-                header.classList.remove('header-scrolled');
-            }
+            if (window.scrollY > 50) header.classList.add('header-scrolled');
+            else header.classList.remove('header-scrolled');
         });
 
-        // Update Footer Year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
         
-        // Active Nav Link highlighting on scroll (simple version)
         const sections = document.querySelectorAll("section[id]");
         const navLinks = document.querySelectorAll("nav ul li a.nav-link");
-
         window.addEventListener("scroll", () => {
             let current = "";
             sections.forEach((section) => {
                 const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 70) { // 70 is header height approx
-                    current = section.getAttribute("id");
-                }
+                if (pageYOffset >= sectionTop - 75) current = section.getAttribute("id");
             });
-
             navLinks.forEach((link) => {
                 link.classList.remove("active");
-                if (link.getAttribute("href").includes(current)) {
-                    link.classList.add("active");
-                }
+                if (link.getAttribute("href").includes(current)) link.classList.add("active");
             });
-            // Special case for services dropdown parent
             const servicesLink = document.querySelector('.dropdown-toggle');
-            if(current === 'service-satinalma' || current === 'service-techizat' || current === 'service-tender' || current === 'service-logistika') {
+            if(current.startsWith('service-')) {
                 if(servicesLink && !servicesLink.classList.contains('active')) servicesLink.classList.add('active');
             } else {
                  if(servicesLink && servicesLink.classList.contains('active') && !current.startsWith('service-')) servicesLink.classList.remove('active');
             }
-
         });
 
-        // Contact form service links
         document.querySelectorAll('.contact-service-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                const serviceCard = this.closest('.service-card');
-                const serviceName = serviceCard.querySelector('h3').textContent;
+                const serviceName = this.closest('.service-card').querySelector('h3').textContent;
                 const contactSubjectField = document.getElementById('contact-subject');
-                if (contactSubjectField) {
-                    contactSubjectField.value = serviceName + " haqqında sorğu";
-                }
-                // Scroll to contact section
+                if (contactSubjectField) contactSubjectField.value = serviceName + " haqqında sorğu";
                 document.getElementById('elaqe').scrollIntoView({ behavior: 'smooth' });
             });
         });
-
     </script>
 </body>
 </html>
