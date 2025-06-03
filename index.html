@@ -62,6 +62,9 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <style>
         :root {
             --colorPrimary: #244157;
@@ -193,6 +196,7 @@
             transition: var(--transitionFast);
             padding: 1rem 0;
             margin-top: 1rem;
+            z-index: 1001;
         }
 
         .dropdownMenu:hover .dropdownContent {
@@ -220,6 +224,7 @@
             flex-direction: column;
             cursor: pointer;
             padding: 0.5rem;
+            z-index: 1002;
         }
 
         .hamburgerLine {
@@ -247,13 +252,15 @@
             position: fixed;
             top: 0;
             right: -100%;
-            width: 300px;
+            width: 100%;
+            max-width: 300px;
             height: 100vh;
             background: var(--colorWhite);
-            padding: 2rem;
+            padding: 4rem 2rem 2rem;
             transition: var(--transitionSlow);
             box-shadow: var(--shadowHeavy);
             z-index: 999;
+            overflow-y: auto;
         }
 
         .mobileMenu.active {
@@ -263,7 +270,21 @@
         .mobileMenu .navMenu {
             flex-direction: column;
             gap: 1.5rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
+        }
+
+        .mobileMenu .navMenu a {
+            font-size: 1.2rem;
+        }
+
+        .mobileCloseButton {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--colorPrimary);
+            z-index: 1003;
         }
 
         /* Hero Section */
@@ -295,18 +316,6 @@
         .heroContent {
             position: relative;
             z-index: 2;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .heroTitle {
@@ -381,6 +390,7 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            border-left: 4px solid transparent;
         }
 
         .serviceCard::before {
@@ -399,8 +409,9 @@
         }
 
         .serviceCard:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.02);
             box-shadow: var(--shadowHeavy);
+            border-left-color: var(--colorPrimary);
         }
 
         .serviceIcon {
@@ -420,6 +431,24 @@
         .serviceDescription {
             color: var(--colorTextLight);
             line-height: 1.7;
+        }
+
+        /* Service Detail Sections */
+        .serviceDetailSection {
+            padding: 5rem 0;
+            background: var(--colorWhite);
+        }
+
+        .serviceDetailContent {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .serviceDetailContent p {
+            color: var(--colorTextLight);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
         }
 
         /* About Section */
@@ -532,6 +561,11 @@
             transform: translateY(-2px);
         }
 
+        .submitButton:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
         .contactInfo {
             display: flex;
             flex-direction: column;
@@ -546,6 +580,12 @@
             background: var(--colorWhite);
             border-radius: 10px;
             box-shadow: var(--shadowLight);
+            transition: var(--transitionFast);
+        }
+
+        .contactItem:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadowMedium);
         }
 
         .contactIcon {
@@ -595,6 +635,7 @@
 
         .footerSection a:hover {
             color: var(--colorAccent);
+            transform: translateX(5px);
         }
 
         .socialLinks {
@@ -626,6 +667,82 @@
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modalContent {
+            background-color: var(--colorWhite);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadowHeavy);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            animation: slideInUp 0.3s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .closeModal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--colorTextLight);
+            transition: var(--transitionFast);
+        }
+
+        .closeModal:hover {
+            color: var(--colorPrimary);
+        }
+
+        .modalContent h3 {
+            color: var(--colorPrimary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .modalContent p {
+            color: var(--colorTextLight);
+            line-height: 1.6;
+        }
+
+        /* Scroll Indicator */
+        .scrollIndicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--colorPrimary), var(--colorAccent));
+            z-index: 10001;
+            transition: width 0.1s ease-out;
         }
 
         /* Responsive Design */
@@ -663,9 +780,44 @@
             .aboutStats {
                 grid-template-columns: 1fr;
             }
+
+            .mobileMenu {
+                width: 100%;
+                max-width: 400px;
+                background: var(--colorWhite);
+                z-index: 9999;
+                padding-top: 5rem;
+            }
+
+            .mobileMenu .navMenu {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .mobileMenu .navMenu a {
+                color: var(--colorPrimary);
+            }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 640px) {
+            .heroSection {
+                padding: 6rem 0 3rem;
+            }
+            
+            .modalContent {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .footerContent {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .socialLinks {
+                justify-content: center;
+            }
+            
             .heroTitle {
                 font-size: 2rem;
             }
@@ -679,49 +831,14 @@
             }
         }
 
-        /* Animations */
-        .fadeIn {
-            animation: fadeIn 1s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .slideInLeft {
-            animation: slideInLeft 0.8s ease-out;
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .slideInRight {
-            animation: slideInRight 0.8s ease-out;
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
         /* Smooth scroll offset for fixed header */
         html {
             scroll-padding-top: 100px;
+        }
+
+        /* AOS animation overrides */
+        .fadeIn, .slideInLeft, .slideInRight {
+            opacity: 0;
         }
     </style>
 </head>
@@ -736,11 +853,12 @@
                     <li class="dropdownMenu">
                         <a href="#services">Xidmətlər</a>
                         <div class="dropdownContent">
-                            <a href="#procurement">Procurement Xidmətləri</a>
-                            <a href="#tender">Tender İdarəetməsi</a>
-                            <a href="#supply-chain">Supply Chain</a>
-                            <a href="#logistics">Logistika</a>
-                            <a href="#consulting">Konsaltinq</a>
+                            <a href="#procurement" onclick="scrollToSection('procurement')">Procurement Xidmətləri</a>
+                            <a href="#tender" onclick="scrollToSection('tender')">Tender İdarəetməsi</a>
+                            <a href="#supply-chain" onclick="scrollToSection('supply-chain')">Supply Chain</a>
+                            <a href="#logistics" onclick="scrollToSection('logistics')">Logistika</a>
+                            <a href="#consulting" onclick="scrollToSection('consulting')">Konsaltinq</a>
+                            <a href="#quality" onclick="scrollToSection('quality')">Keyfiyyət Nəzarəti</a>
                         </div>
                     </li>
                     <li><a href="#about">Haqqımızda</a></li>
@@ -756,9 +874,20 @@
         </div>
 
         <div class="mobileMenu" id="mobileMenu">
+            <span class="mobileCloseButton" onclick="closeMobileMenu()">×</span>
             <ul class="navMenu">
                 <li><a href="#home" onclick="closeMobileMenu()">Ana Səhifə</a></li>
-                <li><a href="#services" onclick="closeMobileMenu()">Xidmətlər</a></li>
+                <li>
+                    <a href="#services" onclick="closeMobileMenu()">Xidmətlər</a>
+                    <ul class="mobileDropdown">
+                        <li><a href="#procurement" onclick="closeMobileMenu()">Procurement Xidmətləri</a></li>
+                        <li><a href="#tender" onclick="closeMobileMenu()">Tender İdarəetməsi</a></li>
+                        <li><a href="#supply-chain" onclick="closeMobileMenu()">Supply Chain</a></li>
+                        <li><a href="#logistics" onclick="closeMobileMenu()">Logistika</a></li>
+                        <li><a href="#consulting" onclick="closeMobileMenu()">Konsaltinq</a></li>
+                        <li><a href="#quality" onclick="closeMobileMenu()">Keyfiyyət Nəzarəti</a></li>
+                    </ul>
+                </li>
                 <li><a href="#about" onclick="closeMobileMenu()">Haqqımızda</a></li>
                 <li><a href="#contact" onclick="closeMobileMenu()">Əlaqə</a></li>
             </ul>
@@ -766,7 +895,7 @@
     </header>
 
     <main>
-        <section id="home" class="heroSection">
+        <section id="home" class="heroSection" data-aos="fade-up">
             <div class="containerFluid">
                 <div class="heroContent">
                     <h1 class="heroTitle">Prime Trade Group</h1>
@@ -777,41 +906,41 @@
             </div>
         </section>
 
-        <section id="services" class="servicesSection">
+        <section id="services" class="servicesSection" data-aos="fade-up">
             <div class="containerFluid">
                 <h2 class="sectionTitle">Bizim Xidmətlərimiz</h2>
                 <div class="servicesGrid">
-                    <article class="serviceCard" onclick="window.location.href='#procurement'">
+                    <article class="serviceCard" onclick="scrollToSection('procurement')" data-aos="fade-up" data-aos-delay="100">
                         <div class="serviceIcon">🏢</div>
                         <h3 class="serviceTitle">Procurement Xidmətləri</h3>
                         <p class="serviceDescription">Peşəkar tədarük proseslərinin idarə edilməsi, qiymət analizləri və optimal təchizatçı seçimi ilə sizin ehtiyaclarınızı qarşılayırıq.</p>
                     </article>
 
-                    <article class="serviceCard" onclick="window.location.href='#tender'">
+                    <article class="serviceCard" onclick="scrollToSection('tender')" data-aos="fade-up" data-aos-delay="200">
                         <div class="serviceIcon">📋</div>
                         <h3 class="serviceTitle">Tender İdarəetməsi</h3>
                         <p class="serviceDescription">Dövlət və özəl sektor tenderlərinin tam idarə edilməsi, sənədləşmə və uğurlu nəticə əldə edilməsi üçün hərtərəfli dəstək.</p>
                     </article>
 
-                    <article class="serviceCard" onclick="window.location.href='#supply-chain'">
+                    <article class="serviceCard" onclick="scrollToSection('supply-chain')" data-aos="fade-up" data-aos-delay="300">
                         <div class="serviceIcon">🔗</div>
                         <h3 class="serviceTitle">Supply Chain Optimallaşdırılması</h3>
                         <p class="serviceDescription">Tədarük zəncirinin tam analizi, səmərəliliyin artırılması və xərclərin minimallaşdırılması üçün innovativ həllər.</p>
                     </article>
 
-                    <article class="serviceCard" onclick="window.location.href='#logistics'">
+                    <article class="serviceCard" onclick="scrollToSection('logistics')" data-aos="fade-up" data-aos-delay="400">
                         <div class="serviceIcon">🚛</div>
                         <h3 class="serviceTitle">Logistika Xidmətləri</h3>
                         <p class="serviceDescription">Beynəlxalq və daxili logistika, anbar idarəetməsi, nəqliyyat koordinasiyası və çatdırılma xidmətləri.</p>
                     </article>
 
-                    <article class="serviceCard" onclick="window.location.href='#consulting'">
+                    <article class="serviceCard" onclick="scrollToSection('consulting')" data-aos="fade-up" data-aos-delay="500">
                         <div class="serviceIcon">💡</div>
                         <h3 class="serviceTitle">Konsaltinq Xidmətləri</h3>
                         <p class="serviceDescription">Biznes proseslərinin təkmilləşdirilməsi, risklərin qiymətləndirilməsi və strateji planlaşdırma sahəsində məsləhətlər.</p>
                     </article>
 
-                    <article class="serviceCard" onclick="window.location.href='#quality'">
+                    <article class="serviceCard" onclick="scrollToSection('quality')" data-aos="fade-up" data-aos-delay="600">
                         <div class="serviceIcon">✅</div>
                         <h3 class="serviceTitle">Keyfiyyət Nəzarəti</h3>
                         <p class="serviceDescription">Məhsul və xidmətlərin keyfiyyət standartlarına uyğunluğunun yoxlanılması və sertifikasiya proseslərinin idarə edilməsi.</p>
@@ -820,11 +949,72 @@
             </div>
         </section>
 
-        <section id="about" class="aboutSection">
+        <!-- Service Detail Sections -->
+        <section id="procurement" class="serviceDetailSection" data-aos="fade-up">
+            <div class="containerFluid">
+                <h2 class="sectionTitle">Procurement Xidmətləri</h2>
+                <div class="serviceDetailContent">
+                    <p>Procurement xidmətlərimiz sizin biznes ehtiyaclarınızı ödəmək üçün optimallaşdırılmış tədarük prosesləri təklif edir. Təchizatçı seçimi, qiymət analizi və müqavilələrin idarə edilməsi daxil olmaqla hərtərəfli həllər təqdim edirik.</p>
+                    <p>Bizim peşəkar komandamız tədarük proseslərinin şəffaf və səmərəli şəkildə aparılmasını təmin edir. Xərcləri azaltmaq və keyfiyyəti artırmaq üçün ən yaxşı təcrübələrdən istifadə edirik.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tender" class="serviceDetailSection" data-aos="fade-up">
+            <div class="containerFluid">
+                <h2 class="sectionTitle">Tender İdarəetməsi</h2>
+                <div class="serviceDetailContent">
+                    <p>Tender idarəetmə xidmətlərimiz dövlət və özəl sektor tenderlərində uğurlu nəticələr əldə etmək üçün nəzərdə tutulub. Sənədləşmədən tutmuş təklifin hazırlanmasına qədər bütün prosesləri idarə edirik.</p>
+                    <p>Təcrübəli komandamız tender qaydalarına uyğunluğun təmin edilməsi və rəqabət üstünlüyünün yaradılması üçün çalışır.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="supply-chain" class="serviceDetailSection" data-aos="fade-up">
+            <div class="containerFluid">
+                <h2 class="sectionTitle">Supply Chain Optimallaşdırılması</h2>
+                <div class="serviceDetailContent">
+                    <p>Tədarük zənciri optimallaşdırma xidmətlərimiz biznesinizin səmərəliliyini artırmaq üçün nəzərdə tutulub. Logistika, anbar idarəetməsi və təchizat zənciri analizləri ilə xərcləri azaltmağa kömək edirik.</p>
+                    <p>İnnovativ texnologiyalar və strategiyalar istifadə edərək tədarük zəncirinizin performansını yüksəldirik.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="logistics" class="serviceDetailSection" data-aos="fade-up">
+            <div class="containerFluid">
+                <h2 class="sectionTitle">Logistika Xidmətləri</h2>
+                <div class="serviceDetailContent">
+                    <p>Beynəlxalq və daxili logistika xidmətlərimiz məhsullarınızın vaxtında və təhlükəsiz şəkildə çatdırılmasını təmin edir. Anbar idarəetməsi və nəqliyyat koordinasiyası sahəsində hərtərəfli dəstək təklif edirik.</p>
+                    <p>Logistika proseslərinizi optimallaşdırmaq üçün müasir texnologiyalardan istifadə edirik.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="consulting" class="serviceDetailSection" data-aos="fade-up">
+            <div class="containerFluid">
+                <h2 class="sectionTitle">Konsaltinq Xidmətləri</h2>
+                <div class="serviceDetailContent">
+                    <p>Biznes proseslərinin təkmilləşdirilməsi, risklərin qiymətləndirilməsi və strateji planlaşdırma sahəsində peşəkar konsaltinq xidmətləri təqdim edirik.</p>
+                    <p>Komandamız biznesinizin rəqabət qabiliyyətini artırmaq üçün fərdi həllər təklif edir.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="quality" class="serviceDetailSection" data-aos="fade-up">
+            <div class="containerFluid">
+                <h2 class="sectionTitle">Keyfiyyət Nəzarəti</h2>
+                <div class="serviceDetailContent">
+                    <p>Keyfiyyət nəzarəti xidmətlərimiz məhsul və xidmətlərinizin standartlara uyğunluğunu təmin edir. Sertifikasiya proseslərinin idarə edilməsi və keyfiyyət yoxlamaları ilə biznesinizin etibarlılığını artırırıq.</p>
+                    <p>Müştəri məmnuniyyətini təmin etmək üçün ciddi keyfiyyət standartları tətbiq edirik.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="aboutSection" data-aos="fade-up">
             <div class="containerFluid">
                 <h2 class="sectionTitle">Haqqımızda</h2>
                 <div class="aboutContent">
-                    <div class="slideInLeft">
+                    <div data-aos="fade-right">
                         <p class="aboutText">
                             Prime Trade Group 2015-ci ildən etibarən Azərbaycanda procurement, tender və supply chain sahəsində fəaliyyət göstərən aparıcı şirkətdir. Bizim missiyamız müştərilərimizin biznes proseslərini optimallaşdırmaq və onların rəqabət qabiliyyətini artırmaqdır.
                         </p>
@@ -832,21 +1022,21 @@
                             Peşəkar komandamız, innovativ yanaşmalar və müasir texnologiyalardan istifadə edərək, sizə ən yüksək keyfiyyətli xidmətlər təqdim edir. Bizim məqsədimiz hər bir layihədə maksimal nəticə əldə etmək və uzunmüddətli tərəfdaşlıq münasibətləri qurmaqdır.
                         </p>
                     </div>
-                    <div class="slideInRight">
+                    <div data-aos="fade-left">
                         <div class="aboutStats">
-                            <div class="statItem">
+                            <div class="statItem" data-aos="zoom-in" data-aos-delay="100">
                                 <span class="statNumber">500+</span>
                                 <span class="statLabel">Uğurlu Layihə</span>
                             </div>
-                            <div class="statItem">
+                            <div class="statItem" data-aos="zoom-in" data-aos-delay="200">
                                 <span class="statNumber">150+</span>
                                 <span class="statLabel">Məmnun Müştəri</span>
                             </div>
-                            <div class="statItem">
+                            <div class="statItem" data-aos="zoom-in" data-aos-delay="300">
                                 <span class="statNumber">8+</span>
                                 <span class="statLabel">İllik Təcrübə</span>
                             </div>
-                            <div class="statItem">
+                            <div class="statItem" data-aos="zoom-in" data-aos-delay="400">
                                 <span class="statNumber">24/7</span>
                                 <span class="statLabel">Dəstək Xidməti</span>
                             </div>
@@ -856,11 +1046,11 @@
             </div>
         </section>
 
-        <section id="contact" class="contactSection">
+        <section id="contact" class="contactSection" data-aos="fade-up">
             <div class="containerFluid">
                 <h2 class="sectionTitle">Bizimlə Əlaqə</h2>
                 <div class="contactContent">
-                    <div class="contactForm">
+                    <div class="contactForm" data-aos="fade-right">
                         <h3 style="margin-bottom: 1.5rem; color: var(--colorPrimary);">Mesaj Göndərin</h3>
                         <form id="contactFormMain" onsubmit="handleFormSubmit(event)">
                             <div class="formGroup">
@@ -899,8 +1089,8 @@
                         </form>
                     </div>
 
-                    <div class="contactInfo">
-                        <div class="contactItem">
+                    <div class="contactInfo" data-aos="fade-left">
+                        <div class="contactItem" data-aos="fade-up" data-aos-delay="100">
                             <div class="contactIcon">📍</div>
                             <div>
                                 <h4 style="color: var(--colorPrimary); margin-bottom: 0.5rem;">Ünvan</h4>
@@ -908,7 +1098,7 @@
                             </div>
                         </div>
 
-                        <div class="contactItem">
+                        <div class="contactItem" data-aos="fade-up" data-aos-delay="200">
                             <div class="contactIcon">📞</div>
                             <div>
                                 <h4 style="color: var(--colorPrimary); margin-bottom: 0.5rem;">Telefon</h4>
@@ -916,7 +1106,7 @@
                             </div>
                         </div>
 
-                        <div class="contactItem">
+                        <div class="contactItem" data-aos="fade-up" data-aos-delay="300">
                             <div class="contactIcon">✉️</div>
                             <div>
                                 <h4 style="color: var(--colorPrimary); margin-bottom: 0.5rem;">Email</h4>
@@ -924,7 +1114,7 @@
                             </div>
                         </div>
 
-                        <div class="contactItem">
+                        <div class="contactItem" data-aos="fade-up" data-aos-delay="400">
                             <div class="contactIcon">🕒</div>
                             <div>
                                 <h4 style="color: var(--colorPrimary); margin-bottom: 0.5rem;">İş Saatları</h4>
@@ -934,7 +1124,7 @@
                     </div>
                 </div>
 
-                <div class="mapContainer">
+                <div class="mapContainer" data-aos="fade-up" data-aos-delay="500">
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d194473.4280451284!2d49.69315!3d40.39478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d6bd6211cf9%3A0x343f6b5e7ae56c6b!2sBaku%2C%20Azerbaijan!5e0!3m2!1sen!2s!4v1685000000000!5m2!1sen!2s" 
                         width="100%" 
@@ -949,16 +1139,16 @@
         </section>
     </main>
 
-    <footer class="footerMain">
+    <footer class="footerMain" >
         <div class="containerFluid">
             <div class="footerContent">
-                <div class="footerSection">
+                <div class="footerSection" >
                     <h3>Prime Trade Group</h3>
                     <p>Azərbaycanda aparıcı procurement, tender və supply chain şirkəti. Peşəkar xidmətlər və innovativ həllər.</p>
                     <p style="margin-top: 1rem; font-style: italic; color: var(--colorAccent);">"Sizin uğurunuz - bizim prioritetimiz"</p>
                 </div>
 
-                <div class="footerSection">
+                <div class="footerSection" >
                     <h3>Xidmətlərimiz</h3>
                     <a href="#procurement">Procurement Xidmətləri</a><br>
                     <a href="#tender">Tender İdarəetməsi</a><br>
@@ -968,7 +1158,7 @@
                     <a href="#quality">Keyfiyyət Nəzarəti</a>
                 </div>
 
-                <div class="footerSection">
+                <div class="footerSection" >
                     <h3>Faydalı Bağlantılar</h3>
                     <a href="#about">Haqqımızda</a><br>
                     <a href="#services">Xidmətlər</a><br>
@@ -978,7 +1168,7 @@
                     <a href="#careers">Karyera</a>
                 </div>
 
-                <div class="footerSection">
+                <div class="footerSection" >
                     <h3>Əlaqə Məlumatları</h3>
                     <p>📍 Bakı şəhəri, Yasamal rayonu<br>Azərbaycan Respublikası</p>
                     <p>📞 +994 12 XXX XX XX</p>
@@ -994,8 +1184,8 @@
                 </div>
             </div>
 
-            <div class="footerBottom">
-                <p>&copy; 2024 Prime Trade Group. Bütün hüquqlar qorunur. | Website by Prime Trade Group</p>
+            <div class="footerBottom" 
+                <p> © 2024 Prime Trade Group. Bütün hüquqlar qorunur. | Website by Prime Trade Group</p>
             </div>
         </div>
     </footer>
@@ -1003,13 +1193,26 @@
     <!-- Success Modal -->
     <div id="successModal" class="modal" style="display: none;">
         <div class="modalContent">
-            <span class="closeModal" onclick="closeModal()">&times;</span>
+            <span class="closeModal" onclick="closeModal()">×</span>
             <h3>✅ Uğurlu!</h3>
             <p>Mesajınız uğurla göndərildi. Tezliklə sizinlə əlaqə saxlayacağıq.</p>
         </div>
     </div>
 
+    <!-- Scroll Progress Indicator -->
+    <div class="scrollIndicator" id="scrollIndicator"></div>
+
+    <!-- AOS Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out',
+            once: true,
+            offset: 100
+        });
+
         // Header scroll effect
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
@@ -1029,6 +1232,17 @@
             mobileMenu.classList.toggle('active');
             document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
         });
+
+        function scrollToSection(sectionId) {
+            const target = document.getElementById(sectionId);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+            closeMobileMenu();
+        }
 
         function closeMobileMenu() {
             hamburgerMenu.classList.remove('active');
@@ -1105,33 +1319,20 @@
             }
         });
 
-        // Animate elements on scroll
+        // Animate elements on scroll (replaced with AOS)
         function animateOnScroll() {
-            const elements = document.querySelectorAll('.serviceCard, .statItem, .contactItem');
-            const windowHeight = window.innerHeight;
-
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-
-                if (elementTop < windowHeight - elementVisible) {
-                    element.classList.add('fadeIn');
-                }
-            });
+            // AOS handles animations now
         }
 
-        window.addEventListener('scroll', animateOnScroll);
-        
         // Initial animation check
         document.addEventListener('DOMContentLoaded', animateOnScroll);
 
         // Service card click handlers
         document.querySelectorAll('.serviceCard').forEach(card => {
             card.addEventListener('click', function() {
-                const serviceType = this.onclick.toString().match(/#(\w+)/)?.[1];
+                const serviceType = this.getAttribute('onclick').match(/'(\w+-?\w*)'/)?.[1];
                 if (serviceType) {
-                    // You can add specific actions for each service type here
-                    console.log(`Clicked on service: ${serviceType}`);
+                    scrollToSection(serviceType);
                 }
             });
         });
@@ -1214,144 +1415,7 @@
                 observer.observe(aboutStats);
             }
         });
-    </script>
 
-    <style>
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 10000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            justify-content: center;
-            align-items: center;
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        .modalContent {
-            background-color: var(--colorWhite);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: var(--shadowHeavy);
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-            position: relative;
-            animation: slideInUp 0.3s ease-out;
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .closeModal {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            color: var(--colorTextLight);
-            transition: var(--transitionFast);
-        }
-
-        .closeModal:hover {
-            color: var(--colorPrimary);
-        }
-
-        .modalContent h3 {
-            color: var(--colorPrimary);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .modalContent p {
-            color: var(--colorTextLight);
-            line-height: 1.6;
-        }
-
-        /* Enhanced Service Cards */
-        .serviceCard {
-            position: relative;
-            border-left: 4px solid transparent;
-            transition: all var(--transitionSlow);
-        }
-
-        .serviceCard:hover {
-            border-left-color: var(--colorPrimary);
-            transform: translateY(-10px) scale(1.02);
-        }
-
-        /* Loading animation for form button */
-        .submitButton:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-
-        /* Enhanced animations */
-        .fadeIn {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        /* Improved responsive design */
-        @media (max-width: 640px) {
-            .heroSection {
-                padding: 6rem 0 3rem;
-            }
-            
-            .modalContent {
-                margin: 1rem;
-                padding: 1.5rem;
-            }
-            
-            .footerContent {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .socialLinks {
-                justify-content: center;
-            }
-        }
-
-        /* Additional hover effects */
-        .contactItem:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadowMedium);
-        }
-
-        .footerSection a:hover {
-            transform: translateX(5px);
-        }
-
-        /* Scroll indicator */
-        .scrollIndicator {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--colorPrimary), var(--colorAccent));
-            z-index: 10001;
-            transition: width 0.1s ease-out;
-        }
-    </style>
-
-    <!-- Scroll Progress Indicator -->
-    <div class="scrollIndicator" id="scrollIndicator"></div>
-
-    <script>
         // Scroll progress indicator
         window.addEventListener('scroll', function() {
             const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -1360,5 +1424,5 @@
             document.getElementById('scrollIndicator').style.width = scrollPercent + '%';
         });
     </script>
-    </body>
+</body>
 </html>
