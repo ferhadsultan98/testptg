@@ -1,1205 +1,1364 @@
 <!DOCTYPE html>
-<html lang="az">
+<html lang="az" itemscope itemtype="https://schema.org/Organization">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prime Trade Group - Satınalma və Tender Həlləri</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Roboto', 'Segoe UI', sans-serif;
-      line-height: 1.5;
-      color: #222;
-      background-color: #F4F4F4;
-      overflow-x: hidden;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .flexCenter {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .flexBetween {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .flexColumn {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 12px 28px;
-      border-radius: 4px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      border: none;
-      font-size: 16px;
-    }
-
-    .btnPrimary {
-      background-color: #254057;
-      color: white;
-    }
-
-    .btnPrimary:hover {
-      background-color: #1a2f42;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(37, 64, 87, 0.2);
-    }
-
-    .textCenter {
-      text-align: center;
-    }
-
-    .sectionTitle {
-      font-size: 32px;
-      font-weight: 700;
-      margin-bottom: 20px;
-      color: #254057;
-      position: relative;
-      padding-bottom: 15px;
-    }
-
-    .sectionTitle::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background-color: #254057;
-    }
-
-    .textCenter .sectionTitle::after {
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .sectionSubtitle {
-      font-size: 18px;
-      font-weight: 400;
-      margin-bottom: 40px;
-      color: #525659;
-    }
-
-    section {
-      padding: 80px 0;
-    }
-
-    .header {
-      background-color: rgba(37, 64, 87, 0.95);
-      position: fixed;
-      width: 100%;
-      z-index: 1000;
-      transition: all 0.3s ease;
-      padding: 20px 0;
-    }
-
-    .headerScrolled {
-      padding: 15px 0;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-    }
-
-    .logoIcon {
-      color: #254057;
-      font-size: 28px;
-      margin-right: 10px;
-    }
-
-    .logoText {
-      color: white;
-      font-size: 20px;
-      font-weight: 700;
-    }
-
-    .navMenu {
-      display: flex;
-      list-style: none;
-    }
-
-    .navItem {
-      margin-left: 30px;
-    }
-
-    .navLink {
-      color: white;
-      font-weight: 500;
-      position: relative;
-      transition: all 0.3s ease;
-      padding: 5px 0;
-    }
-
-    .navLink:hover {
-      color: #254057;
-    }
-
-    .navLink::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: #254057;
-      transition: width 0.3s ease;
-    }
-
-    .navLink:hover::after {
-      width: 100%;
-    }
-
-    .mobileMenuBtn {
-      display: none;
-      color: white;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    .heroSection {
-      background: linear-gradient(rgba(37, 64, 87, 0.8), rgba(37, 64, 87, 0.8)), url('https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-      background-size: cover;
-      background-position: center;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      color: white;
-      position: relative;
-    }
-
-    .heroContent {
-      max-width: 650px;
-    }
-
-    .heroTitle {
-      font-size: 48px;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 20px;
-      animation: fadeInUp 1s ease;
-    }
-
-    .heroSubtitle {
-      font-size: 20px;
-      margin-bottom: 30px;
-      animation: fadeInUp 1s ease 0.2s;
-      animation-fill-mode: both;
-    }
-
-    .heroBtn {
-      animation: fadeInUp 1s ease 0.4s;
-      animation-fill-mode: both;
-    }
-
-    .servicesSection {
-      background-color: white;
-    }
-
-    .servicesGrid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-top: 50px;
-    }
-
-    .serviceCard {
-      background-color: white;
-      border-radius: 8px;
-      padding: 30px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
-    }
-
-    .serviceCard:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
-
-    .serviceIcon {
-      font-size: 40px;
-      color: #254057;
-      margin-bottom: 20px;
-    }
-
-    .serviceTitle {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 15px;
-      color: #254057;
-    }
-
-    .serviceDesc {
-      color: #525659;
-      font-size: 16px;
-    }
-
-    .solutionsSection {
-      background-color: #F4F4F4;
-    }
-
-    .solutionsContent {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-      margin-top: 50px;
-    }
-
-    .solutionItem {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 25px;
-    }
-
-    .solutionIcon {
-      color: #254057;
-      font-size: 22px;
-      margin-right: 15px;
-      margin-top: 3px;
-    }
-
-    .solutionText h4 {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: #254057;
-    }
-
-    .solutionText p {
-      color: #525659;
-    }
-
-    .whyUsSection {
-      background-color: white;
-    }
-
-    .whyUsContent {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-      margin-top: 50px;
-    }
-
-    .whyUsItem {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 25px;
-    }
-
-    .whyUsIcon {
-      color: #254057;
-      font-size: 22px;
-      margin-right: 15px;
-      margin-top: 3px;
-    }
-
-    .whyUsText h4 {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: #254057;
-    }
-
-    .whyUsText p {
-      color: #525659;
-    }
-
-    .clientsSection {
-      background-color: #F4F4F4;
-    }
-
-    .clientsGrid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 30px;
-      margin-top: 50px;
-    }
-
-    .clientLogo {
-      background-color: white;
-      height: 100px;
-      border-radius: 8px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
-    }
-
-    .clientLogo:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
-
-    .clientLogo i {
-      font-size: 40px;
-      color: #254057;
-    }
-
-    .testimonialsSection {
-      background-color: white;
-    }
-
-    .testimonialsGrid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-top: 50px;
-    }
-
-    .testimonialCard {
-      background-color: #F4F4F4;
-      border-radius: 8px;
-      padding: 30px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      position: relative;
-    }
-
-    .testimonialCard::before {
-      content: '\f10d';
-      font-family: 'Font Awesome 5 Free';
-      font-weight: 900;
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      font-size: 24px;
-      color: rgba(37, 64, 87, 0.2);
-    }
-
-    .testimonialText {
-      font-style: italic;
-      margin-bottom: 20px;
-      color: #525659;
-      position: relative;
-      z-index: 1;
-      padding-top: 10px;
-    }
-
-    .testimonialAuthor {
-      display: flex;
-      align-items: center;
-    }
-
-    .testimonialAuthorImg {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: #254057;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-right: 15px;
-      overflow: hidden;
-    }
-
-    .testimonialAuthorImg i {
-      color: white;
-      font-size: 24px;
-    }
-
-    .testimonialAuthorInfo h4 {
-      font-size: 18px;
-      font-weight: 600;
-      color: #254057;
-      margin-bottom: 5px;
-    }
-
-    .testimonialAuthorInfo p {
-      font-size: 14px;
-      color: #525659;
-    }
-
-    .aboutSection {
-      background-color: #F4F4F4;
-    }
-
-    .aboutContent {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-      margin-top: 50px;
-    }
-
-    .aboutText {
-      color: #525659;
-      margin-bottom: 30px;
-    }
-
-    .missionVision {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-    }
-
-    .missionCard, .visionCard {
-      background-color: white;
-      border-radius: 8px;
-      padding: 30px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    }
-
-    .missionVisionIcon {
-      font-size: 40px;
-      color: #254057;
-      margin-bottom: 20px;
-    }
-
-    .missionVisionTitle {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 15px;
-      color: #254057;
-    }
-
-    .missionVisionText {
-      color: #525659;
-    }
-
-    .contactSection {
-      background-color: white;
-    }
-
-    .contactContent {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-      margin-top: 50px;
-    }
-
-    .contactForm {
-      background-color: #F4F4F4;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    }
-
-    .formGroup {
-      margin-bottom: 20px;
-    }
-
-    .formGroup label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 500;
-      color: #254057;
-    }
-
-    .formGroup input,
-    .formGroup textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-family: inherit;
-      font-size: 16px;
-      transition: all 0.3s ease;
-    }
-
-    .formGroup input:focus,
-    .formGroup textarea:focus {
-      border-color: #254057;
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(37, 64, 87, 0.2);
-    }
-
-    .formGroup textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
-
-    .formError {
-      color: #254057;
-      font-size: 14px;
-      margin-top: 5px;
-      display: none;
-    }
-
-    .contactInfo {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .contactInfoItem {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 25px;
-    }
-
-    .contactInfoIcon {
-      color: #254057;
-      font-size: 22px;
-      margin-right: 15px;
-      margin-top: 3px;
-    }
-
-    .contactInfoText h4 {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 5px;
-      color: #254057;
-    }
-
-    .contactInfoText p {
-      color: #525659;
-    }
-
-    .contactMap {
-      background-color: #F4F4F4;
-      border-radius: 8px;
-      overflow: hidden;
-      height: 220px;
-      margin-top: auto;
-      position: relative;
-    }
-
-    .contactMap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .mapPlaceholder {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      background-color: rgba(37, 64, 87, 0.1);
-    }
-
-    .mapPlaceholder i {
-      font-size: 40px;
-      color: #254057;
-      margin-bottom: 10px;
-    }
-
-    .mapPlaceholder p {
-      color: #254057;
-      font-weight: 500;
-    }
-
-    .footer {
-      background-color: #254057;
-      color: white;
-      padding: 40px 0;
-    }
-
-    .footerContent {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footerCopyright {
-      font-size: 14px;
-    }
-
-    .footerLinks {
-      display: flex;
-    }
-
-    .footerLink {
-      margin-left: 20px;
-      color: white;
-      transition: all 0.3s ease;
-    }
-
-    .footerLink:hover {
-      color: #525659;
-    }
-
-    .footerSocial {
-      display: flex;
-    }
-
-    .socialIcon {
-      margin-left: 15px;
-      color: white;
-      font-size: 18px;
-      transition: all 0.3s ease;
-    }
-
-    .socialIcon:hover {
-      color: #525659;
-      transform: translateY(-3px);
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 992px) {
-      .heroTitle {
-        font-size: 36px;
-      }
-
-      .heroSubtitle {
-        font-size: 18px;
-      }
-
-      .sectionTitle {
-        font-size: 28px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .mobileMenuBtn {
-        display: block;
-      }
-
-      .navMenu {
-        position: fixed;
-        top: 80px;
-        left: -100%;
-        flex-direction: column;
-        background-color: #254057;
-        width: 100%;
-        text-align: center;
-        transition: all 0.3s ease;
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        padding: 20px 0;
-      }
-
-      .navMenu.active {
-        left: 0;
-      }
-
-      .navItem {
-        margin: 15px 0;
-      }
-
-      .heroTitle {
-        font-size: 32px;
-      }
-
-      .heroSubtitle {
-        font-size: 16px;
-      }
-
-      .footerContent {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .footerLinks, .footerSocial {
-        margin-top: 20px;
-      }
-
-      .footerLink, .socialIcon {
-        margin: 0 10px;
-      }
-    }
-
-    @media (max-width: 576px) {
-      section {
-        padding: 60px 0;
-      }
-
-      .heroTitle {
-        font-size: 28px;
-      }
-
-      .sectionTitle {
-        font-size: 24px;
-      }
-
-      .btn {
-        padding: 10px 20px;
-        font-size: 14px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Trade Group - Azərbaycanda Procurement və Tender Xidmətləri | Supply Chain Həlləri</title>
+    <meta name="description" content="Prime Trade Group - Azərbaycanda aparıcı procurement, tender və supply chain şirkəti. Peşəkar tender idarəetməsi, tədarük zənciri optimallaşdırılması və logistika xidmətləri.">
+    <meta name="keywords" content="procurement Azərbaycan, tender xidmətləri, supply chain, tədarük, logistika, tender idarəetməsi, Bakı">
+    <meta name="author" content="Prime Trade Group">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Azerbaijani">
+    <meta name="geo.region" content="AZ">
+    <meta name="geo.placename" content="Bakı">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Prime Trade Group - Procurement və Supply Chain Xidmətləri">
+    <meta property="og:description" content="Azərbaycanda aparıcı procurement, tender və supply chain şirkəti. Peşəkar xidmətlər və həllər.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="az_AZ">
+    <meta property="og:site_name" content="Prime Trade Group">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Prime Trade Group - Procurement Xidmətləri">
+    <meta name="twitter:description" content="Azərbaycanda aparıcı procurement və supply chain şirkəti">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Prime Trade Group",
+        "description": "Procurement, tender və supply chain xidmətləri",
+        "url": "https://primetradegroup.az",
+        "logo": "https://primetradegroup.az/logo.png",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "AZ",
+            "addressLocality": "Bakı",
+            "addressRegion": "Azərbaycan"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+994-12-XXX-XX-XX",
+            "contactType": "business"
+        },
+        "sameAs": [
+            "https://facebook.com/primetradegroup",
+            "https://linkedin.com/company/primetradegroup",
+            "https://instagram.com/primetradegroup"
+        ]
+    }
+    </script>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://primetradegroup.az">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --colorPrimary: #244157;
+            --colorSecondary: #535659;
+            --colorAccent: silver;
+            --colorWhite: #ffffff;
+            --colorText: #333333;
+            --colorTextLight: #666666;
+            --colorBackground: #f8f9fa;
+            --transitionFast: 0.3s ease;
+            --transitionSlow: 0.6s ease;
+            --shadowLight: 0 2px 10px rgba(36, 65, 87, 0.1);
+            --shadowMedium: 0 4px 20px rgba(36, 65, 87, 0.15);
+            --shadowHeavy: 0 8px 30px rgba(36, 65, 87, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--colorText);
+            background-color: var(--colorWhite);
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .headerMain {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: var(--transitionFast);
+            border-bottom: 1px solid rgba(36, 65, 87, 0.1);
+        }
+
+        .headerMain.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadowLight);
+        }
+
+        .containerFluid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .navbarMain {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logoMain {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--colorPrimary);
+            text-decoration: none;
+            transition: var(--transitionFast);
+        }
+
+        .logoMain:hover {
+            color: var(--colorSecondary);
+            transform: scale(1.05);
+        }
+
+        .navMenu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .navMenu a {
+            text-decoration: none;
+            color: var(--colorText);
+            font-weight: 500;
+            transition: var(--transitionFast);
+            position: relative;
+        }
+
+        .navMenu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--colorPrimary);
+            transition: var(--transitionFast);
+        }
+
+        .navMenu a:hover::after {
+            width: 100%;
+        }
+
+        .navMenu a:hover {
+            color: var(--colorPrimary);
+        }
+
+        /* Dropdown Menu */
+        .dropdownMenu {
+            position: relative;
+        }
+
+        .dropdownContent {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--colorWhite);
+            min-width: 250px;
+            box-shadow: var(--shadowMedium);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transitionFast);
+            padding: 1rem 0;
+            margin-top: 1rem;
+        }
+
+        .dropdownMenu:hover .dropdownContent {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdownContent a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--colorText);
+            text-decoration: none;
+            transition: var(--transitionFast);
+        }
+
+        .dropdownContent a:hover {
+            background: var(--colorBackground);
+            color: var(--colorPrimary);
+        }
+
+        /* Hamburger Menu */
+        .hamburgerMenu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburgerLine {
+            width: 25px;
+            height: 3px;
+            background: var(--colorPrimary);
+            margin: 3px 0;
+            transition: var(--transitionFast);
+            border-radius: 2px;
+        }
+
+        .hamburgerMenu.active .hamburgerLine:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburgerMenu.active .hamburgerLine:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburgerMenu.active .hamburgerLine:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .mobileMenu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: var(--colorWhite);
+            padding: 2rem;
+            transition: var(--transitionSlow);
+            box-shadow: var(--shadowHeavy);
+            z-index: 999;
+        }
+
+        .mobileMenu.active {
+            right: 0;
+        }
+
+        .mobileMenu .navMenu {
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        /* Hero Section */
+        .heroSection {
+            background: linear-gradient(135deg, var(--colorPrimary) 0%, var(--colorSecondary) 100%);
+            color: var(--colorWhite);
+            padding: 8rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .heroSection::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .heroContent {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .heroTitle {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .heroSubtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .heroSlogan {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .ctaButton {
+            display: inline-block;
+            background: var(--colorAccent);
+            color: var(--colorPrimary);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transitionFast);
+            box-shadow: var(--shadowMedium);
+            border: 2px solid transparent;
+        }
+
+        .ctaButton:hover {
+            background: transparent;
+            color: var(--colorWhite);
+            border-color: var(--colorAccent);
+            transform: translateY(-3px);
+            box-shadow: var(--shadowHeavy);
+        }
+
+        /* Services Section */
+        .servicesSection {
+            padding: 5rem 0;
+            background: var(--colorBackground);
+        }
+
+        .sectionTitle {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--colorPrimary);
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .servicesGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .serviceCard {
+            background: var(--colorWhite);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadowLight);
+            transition: var(--transitionSlow);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .serviceCard::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(36, 65, 87, 0.1), transparent);
+            transition: var(--transitionSlow);
+        }
+
+        .serviceCard:hover::before {
+            left: 100%;
+        }
+
+        .serviceCard:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadowHeavy);
+        }
+
+        .serviceIcon {
+            font-size: 3rem;
+            color: var(--colorPrimary);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .serviceTitle {
+            font-size: 1.5rem;
+            color: var(--colorPrimary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .serviceDescription {
+            color: var(--colorTextLight);
+            line-height: 1.7;
+        }
+
+        /* About Section */
+        .aboutSection {
+            padding: 5rem 0;
+            background: var(--colorWhite);
+        }
+
+        .aboutContent {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .aboutText {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--colorTextLight);
+        }
+
+        .aboutStats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .statItem {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--colorBackground);
+            border-radius: 10px;
+        }
+
+        .statNumber {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--colorPrimary);
+            display: block;
+        }
+
+        .statLabel {
+            color: var(--colorTextLight);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contactSection {
+            padding: 5rem 0;
+            background: var(--colorBackground);
+        }
+
+        .contactContent {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contactForm {
+            background: var(--colorWhite);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadowLight);
+        }
+
+        .formGroup {
+            margin-bottom: 1.5rem;
+        }
+
+        .formGroup label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--colorPrimary);
+            font-weight: 500;
+        }
+
+        .formGroup input,
+        .formGroup textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: var(--transitionFast);
+        }
+
+        .formGroup input:focus,
+        .formGroup textarea:focus {
+            outline: none;
+            border-color: var(--colorPrimary);
+            box-shadow: 0 0 0 3px rgba(36, 65, 87, 0.1);
+        }
+
+        .submitButton {
+            background: var(--colorPrimary);
+            color: var(--colorWhite);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transitionFast);
+            width: 100%;
+        }
+
+        .submitButton:hover {
+            background: var(--colorSecondary);
+            transform: translateY(-2px);
+        }
+
+        .contactInfo {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contactItem {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--colorWhite);
+            border-radius: 10px;
+            box-shadow: var(--shadowLight);
+        }
+
+        .contactIcon {
+            font-size: 1.5rem;
+            color: var(--colorPrimary);
+            width: 50px;
+            text-align: center;
+        }
+
+        /* Map */
+        .mapContainer {
+            width: 100%;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadowMedium);
+            margin-top: 2rem;
+        }
+
+        /* Footer */
+        .footerMain {
+            background: var(--colorPrimary);
+            color: var(--colorWhite);
+            padding: 3rem 0 1rem;
+        }
+
+        .footerContent {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footerSection h3 {
+            margin-bottom: 1.5rem;
+            color: var(--colorAccent);
+            font-weight: 600;
+        }
+
+        .footerSection p,
+        .footerSection a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            line-height: 1.7;
+            transition: var(--transitionFast);
+        }
+
+        .footerSection a:hover {
+            color: var(--colorAccent);
+        }
+
+        .socialLinks {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .socialLink {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: var(--colorWhite);
+            transition: var(--transitionFast);
+        }
+
+        .socialLink:hover {
+            background: var(--colorAccent);
+            color: var(--colorPrimary);
+            transform: translateY(-3px);
+        }
+
+        .footerBottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navMenu {
+                display: none;
+            }
+
+            .hamburgerMenu {
+                display: flex;
+            }
+
+            .heroTitle {
+                font-size: 2.5rem;
+            }
+
+            .heroSubtitle {
+                font-size: 1.1rem;
+            }
+
+            .containerFluid {
+                padding: 0 1rem;
+            }
+
+            .aboutContent,
+            .contactContent {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .servicesGrid {
+                grid-template-columns: 1fr;
+            }
+
+            .aboutStats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .heroTitle {
+                font-size: 2rem;
+            }
+
+            .sectionTitle {
+                font-size: 2rem;
+            }
+
+            .serviceCard {
+                padding: 2rem;
+            }
+        }
+
+        /* Animations */
+        .fadeIn {
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .slideInLeft {
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slideInRight {
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Smooth scroll offset for fixed header */
+        html {
+            scroll-padding-top: 100px;
+        }
+    </style>
 </head>
 <body>
-  <header class="header" id="header">
-    <div class="container flexBetween">
-      <a href="#" class="logo">
-        <i class="fas fa-building logoIcon"></i>
-        <span class="logoText">Prime Trade Group</span>
-      </a>
-      <div class="mobileMenuBtn" id="mobileMenuBtn">
-        <i class="fas fa-bars"></i>
-      </div>
-      <ul class="navMenu" id="navMenu">
-        <li class="navItem"><a href="#home" class="navLink">Ana Səhifə</a></li>
-        <li class="navItem"><a href="#services" class="navLink">Xidmətlər</a></li>
-        <li class="navItem"><a href="#solutions" class="navLink">Həllər</a></li>
-        <li class="navItem"><a href="#why-us" class="navLink">Niyə Biz?</a></li>
-        <li class="navItem"><a href="#clients" class="navLink">Müştərilər</a></li>
-        <li class="navItem"><a href="#about" class="navLink">Haqqımızda</a></li>
-        <li class="navItem"><a href="#contact" class="navLink">Əlaqə</a></li>
-      </ul>
+    <header class="headerMain" id="header">
+        <div class="containerFluid">
+            <nav class="navbarMain">
+                <a href="#home" class="logoMain">Prime Trade Group</a>
+                
+                <ul class="navMenu" id="navMenu">
+                    <li><a href="#home">Ana Səhifə</a></li>
+                    <li class="dropdownMenu">
+                        <a href="#services">Xidmətlər</a>
+                        <div class="dropdownContent">
+                            <a href="#procurement">Procurement Xidmətləri</a>
+                            <a href="#tender">Tender İdarəetməsi</a>
+                            <a href="#supply-chain">Supply Chain</a>
+                            <a href="#logistics">Logistika</a>
+                            <a href="#consulting">Konsaltinq</a>
+                        </div>
+                    </li>
+                    <li><a href="#about">Haqqımızda</a></li>
+                    <li><a href="#contact">Əlaqə</a></li>
+                </ul>
+
+                <div class="hamburgerMenu" id="hamburgerMenu">
+                    <div class="hamburgerLine"></div>
+                    <div class="hamburgerLine"></div>
+                    <div class="hamburgerLine"></div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="mobileMenu" id="mobileMenu">
+            <ul class="navMenu">
+                <li><a href="#home" onclick="closeMobileMenu()">Ana Səhifə</a></li>
+                <li><a href="#services" onclick="closeMobileMenu()">Xidmətlər</a></li>
+                <li><a href="#about" onclick="closeMobileMenu()">Haqqımızda</a></li>
+                <li><a href="#contact" onclick="closeMobileMenu()">Əlaqə</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="heroSection">
+            <div class="containerFluid">
+                <div class="heroContent">
+                    <h1 class="heroTitle">Prime Trade Group</h1>
+                    <p class="heroSubtitle">Azərbaycanda Aparıcı Procurement və Supply Chain Şirkəti</p>
+                    <p class="heroSlogan">"Sizin uğurunuz - bizim prioritetimiz"</p>
+                    <a href="#services" class="ctaButton">Xidmətlərimizlə Tanış Olun</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="servicesSection">
+            <div class="containerFluid">
+                <h2 class="sectionTitle">Bizim Xidmətlərimiz</h2>
+                <div class="servicesGrid">
+                    <article class="serviceCard" onclick="window.location.href='#procurement'">
+                        <div class="serviceIcon">🏢</div>
+                        <h3 class="serviceTitle">Procurement Xidmətləri</h3>
+                        <p class="serviceDescription">Peşəkar tədarük proseslərinin idarə edilməsi, qiymət analizləri və optimal təchizatçı seçimi ilə sizin ehtiyaclarınızı qarşılayırıq.</p>
+                    </article>
+
+                    <article class="serviceCard" onclick="window.location.href='#tender'">
+                        <div class="serviceIcon">📋</div>
+                        <h3 class="serviceTitle">Tender İdarəetməsi</h3>
+                        <p class="serviceDescription">Dövlət və özəl sektor tenderlərinin tam idarə edilməsi, sənədləşmə və uğurlu nəticə əldə edilməsi üçün hərtərəfli dəstək.</p>
+                    </article>
+
+                    <article class="serviceCard" onclick="window.location.href='#supply-chain'">
+                        <div class="serviceIcon">🔗</div>
+                        <h3 class="serviceTitle">Supply Chain Optimallaşdırılması</h3>
+                        <p class="serviceDescription">Tədarük zəncirinin tam analizi, səmərəliliyin artırılması və xərclərin minimallaşdırılması üçün innovativ həllər.</p>
+                    </article>
+
+                    <article class="serviceCard" onclick="window.location.href='#logistics'">
+                        <div class="serviceIcon">🚛</div>
+                        <h3 class="serviceTitle">Logistika Xidmətləri</h3>
+                        <p class="serviceDescription">Beynəlxalq və daxili logistika, anbar idarəetməsi, nəqliyyat koordinasiyası və çatdırılma xidmətləri.</p>
+                    </article>
+
+                    <article class="serviceCard" onclick="window.location.href='#consulting'">
+                        <div class="serviceIcon">💡</div>
+                        <h3 class="serviceTitle">Konsaltinq Xidmətləri</h3>
+                        <p class="serviceDescription">Biznes proseslərinin təkmilləşdirilməsi, risklərin qiymətləndirilməsi və strateji planlaşdırma sahəsində məsləhətlər.</p>
+                    </article>
+
+                    <article class="serviceCard" onclick="window.location.href='#quality'">
+                        <div class="serviceIcon">✅</div>
+                        <h3 class="serviceTitle">Keyfiyyət Nəzarəti</h3>
+                        <p class="serviceDescription">Məhsul və xidmətlərin keyfiyyət standartlarına uyğunluğunun yoxlanılması və sertifikasiya proseslərinin idarə edilməsi.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="aboutSection">
+            <div class="containerFluid">
+                <h2 class="sectionTitle">Haqqımızda</h2>
+                <div class="aboutContent">
+                    <div class="slideInLeft">
+                        <p class="aboutText">
+                            Prime Trade Group 2015-ci ildən etibarən Azərbaycanda procurement, tender və supply chain sahəsində fəaliyyət göstərən aparıcı şirkətdir. Bizim missiyamız müştərilərimizin biznes proseslərini optimallaşdırmaq və onların rəqabət qabiliyyətini artırmaqdır.
+                        </p>
+                        <p class="aboutText">
+                            Peşəkar komandamız, innovativ yanaşmalar və müasir texnologiyalardan istifadə edərək, sizə ən yüksək keyfiyyətli xidmətlər təqdim edir. Bizim məqsədimiz hər bir layihədə maksimal nəticə əldə etmək və uzunmüddətli tərəfdaşlıq münasibətləri qurmaqdır.
+                        </p>
+                    </div>
+                    <div class="slideInRight">
+                        <div class="aboutStats">
+                            <div class="statItem">
+                                <span class="statNumber">500+</span>
+                                <span class="statLabel">Uğurlu Layihə</span>
+                            </div>
+                            <div class="statItem">
+                                <span class="statNumber">150+</span>
+                                <span class="statLabel">Məmnun Müştəri</span>
+                            </div>
+                            <div class="statItem">
+                                <span class="statNumber">8+</span>
+                                <span class="statLabel">İllik Təcrübə</span>
+                            </div>
+                            <div class="statItem">
+                                <span class="statNumber">24/7</span>
+                                <span class="statLabel">Dəstək Xidməti</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contactSection">
+            <div class="containerFluid">
+                <h2 class="sectionTitle">Bizimlə Əlaqə</h2>
+                <div class="contactContent">
+                    <div class="contactForm">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--colorPrimary);">Mesaj Göndərin</h3>
+                        <form id="contactFormMain" onsubmit="handleFormSubmit(event)">
+                            <div class="formGroup">
+                                <label for="name">Ad və Soyad *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="formGroup">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="formGroup">
+                                <label for="phone">Telefon</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="formGroup">
+                                <label for="company">Şirkət</label>
+                                <input type="text" id="company" name="company">
+                            </div>
+                            <div class="formGroup">
+                                <label for="service">Xidmət Növü</label>
+                                <select id="service" name="service" style="width: 100%; padding: 1rem; border: 2px solid #e9ecef; border-radius: 8px; font-family: inherit;">
+                                    <option value="">Seçin...</option>
+                                    <option value="procurement">Procurement Xidmətləri</option>
+                                    <option value="tender">Tender İdarəetməsi</option>
+                                    <option value="supply-chain">Supply Chain</option>
+                                    <option value="logistics">Logistika</option>
+                                    <option value="consulting">Konsaltinq</option>
+                                    <option value="quality">Keyfiyyət Nəzarəti</option>
+                                </select>
+                            </div>
+                            <div class="formGroup">
+                                <label for="message">Mesaj *</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="submitButton">Mesaj Göndər</button>
+                        </form>
+                    </div>
+
+                    <div class="contactInfo">
+                        <div class="contactItem">
+                            <div class="contactIcon">📍</div>
+                            <div>
+                                <h4 style="color: var(--colorPrimary); margin-bottom: 0.5rem;">Ünvan</h4>
+                                <p>Bakı şəhəri, Yasamal rayonu<br>Azərbaycan Respublikası</p>
+                            </div>
+                        </div>
+
+                        <div class="contactItem">
+                            <div class="contactIcon">📞</div>
+                            <div>
+                                <h4 style="color: var(--colorPrimary); margin-bottom: 0.5rem;">Telefon</h4>
+                                <p>+994 12 XXX XX XX<br>+994 55 XXX XX XX</p>
+                            </div>
+                        </div>
+
+                        <div class="contactItem">
+                            <div class="contactIcon">✉️</div>
+                            <div>
+                                <h4 style="color: var(--colorPrimary); margin-bottom: 0.5rem;">Email</h4>
+                                <p>info@primetradegroup.az<br>contact@primetradegroup.az</p>
+                            </div>
+                        </div>
+
+                        <div class="contactItem">
+                            <div class="contactIcon">🕒</div>
+                            <div>
+                                <h4 style="color: var(--colorPrimary); margin-bottom: 0.5rem;">İş Saatları</h4>
+                                <p>B.e - Cümə: 09:00 - 18:00<br>Şənbə: 09:00 - 14:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mapContainer">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d194473.4280451284!2d49.69315!3d40.39478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d6bd6211cf9%3A0x343f6b5e7ae56c6b!2sBaku%2C%20Azerbaijan!5e0!3m2!1sen!2s!4v1685000000000!5m2!1sen!2s" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footerMain">
+        <div class="containerFluid">
+            <div class="footerContent">
+                <div class="footerSection">
+                    <h3>Prime Trade Group</h3>
+                    <p>Azərbaycanda aparıcı procurement, tender və supply chain şirkəti. Peşəkar xidmətlər və innovativ həllər.</p>
+                    <p style="margin-top: 1rem; font-style: italic; color: var(--colorAccent);">"Sizin uğurunuz - bizim prioritetimiz"</p>
+                </div>
+
+                <div class="footerSection">
+                    <h3>Xidmətlərimiz</h3>
+                    <a href="#procurement">Procurement Xidmətləri</a><br>
+                    <a href="#tender">Tender İdarəetməsi</a><br>
+                    <a href="#supply-chain">Supply Chain</a><br>
+                    <a href="#logistics">Logistika Xidmətləri</a><br>
+                    <a href="#consulting">Konsaltinq</a><br>
+                    <a href="#quality">Keyfiyyət Nəzarəti</a>
+                </div>
+
+                <div class="footerSection">
+                    <h3>Faydalı Bağlantılar</h3>
+                    <a href="#about">Haqqımızda</a><br>
+                    <a href="#services">Xidmətlər</a><br>
+                    <a href="#contact">Əlaqə</a><br>
+                    <a href="#privacy">Məxfilik Siyasəti</a><br>
+                    <a href="#terms">İstifadə Şərtləri</a><br>
+                    <a href="#careers">Karyera</a>
+                </div>
+
+                <div class="footerSection">
+                    <h3>Əlaqə Məlumatları</h3>
+                    <p>📍 Bakı şəhəri, Yasamal rayonu<br>Azərbaycan Respublikası</p>
+                    <p>📞 +994 12 XXX XX XX</p>
+                    <p>✉️ info@primetradegroup.az</p>
+                    
+                    <div class="socialLinks">
+                        <a href="https://facebook.com/primetradegroup" class="socialLink" target="_blank" rel="noopener">📘</a>
+                        <a href="https://linkedin.com/company/primetradegroup" class="socialLink" target="_blank" rel="noopener">💼</a>
+                        <a href="https://instagram.com/primetradegroup" class="socialLink" target="_blank" rel="noopener">📷</a>
+                        <a href="https://twitter.com/primetradegroup" class="socialLink" target="_blank" rel="noopener">🐦</a>
+                        <a href="https://youtube.com/primetradegroup" class="socialLink" target="_blank" rel="noopener">📺</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footerBottom">
+                <p>&copy; 2024 Prime Trade Group. Bütün hüquqlar qorunur. | Website by Prime Trade Group</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal" style="display: none;">
+        <div class="modalContent">
+            <span class="closeModal" onclick="closeModal()">&times;</span>
+            <h3>✅ Uğurlu!</h3>
+            <p>Mesajınız uğurla göndərildi. Tezliklə sizinlə əlaqə saxlayacağıq.</p>
+        </div>
     </div>
-  </header>
 
-  <section class="heroSection" id="home">
-    <div class="container">
-      <div class="heroContent">
-        <h1 class="heroTitle">Azərbaycanda Satınalma və Tenderləri Gücləndiririk</h1>
-        <p class="heroSubtitle">Dövlət və özəl müəssisələr üçün strateji satınalma və təchizat zənciri həlləri.</p>
-        <a href="#contact" class="btn btnPrimary heroBtn">Konsultasiya Tələb Edin</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="servicesSection" id="services">
-    <div class="container textCenter">
-      <h2 class="sectionTitle">Nə Təklif Edirik</h2>
-      <p class="sectionSubtitle">Ehtiyaclarınıza uyğunlaşdırılmış hərtərəfli satınalma və tender idarəetmə xidmətləri</p>
-      <div class="servicesGrid">
-        <div class="serviceCard">
-          <i class="fas fa-file-contract serviceIcon"></i>
-          <h3 class="serviceTitle">Tender İdarəetmə</h3>
-          <p class="serviceDesc">Hazırlıqdan müqavilənin bağlanmasına qədər tam dövr tender idarəetməsi. Yerli qaydalara və beynəlxalq ən yaxşı təcrübələrə uyğunluğu təmin edirik.</p>
-        </div>
-        <div class="serviceCard">
-          <i class="fas fa-search serviceIcon"></i>
-          <h3 class="serviceTitle">Təchizatçı Axtarışı</h3>
-          <p class="serviceDesc">Xüsusi tələblərinizə və keyfiyyət standartlarınıza uyğun yerli və beynəlxalq təchizatçıların müəyyənləşdirilməsi və qiymətləndirilməsi.</p>
-        </div>
-        <div class="serviceCard">
-          <i class="fas fa-chart-line serviceIcon"></i>
-          <h3 class="serviceTitle">Satınalma Auditləri</h3>
-          <p class="serviceDesc">Təkmilləşdirmə imkanlarını müəyyənləşdirmək və qaydalara uyğunluğu təmin etmək üçün satınalma proseslərinin hərtərəfli nəzərdən keçirilməsi.</p>
-        </div>
-        <div class="serviceCard">
-          <i class="fas fa-handshake serviceIcon"></i>
-          <h3 class="serviceTitle">Müqavilə Məsləhəti</h3>
-          <p class="serviceDesc">Sizin maraqlarınızı qorumaq və kommersiya şərtlərini optimallaşdırmaq üçün müqavilə danışıqları, hazırlanması və idarəetməsi üzrə ekspert rəhbərliyi.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="solutionsSection" id="solutions">
-    <div class="container">
-      <h2 class="sectionTitle">Həllərimiz</h2>
-      <p class="sectionSubtitle">Təşkilatlara satınalma və tender proseslərini optimallaşdırmaqda necə kömək edirik</p>
-      <div class="solutionsContent">
-        <div>
-          <div class="solutionItem">
-            <i class="fas fa-check-circle solutionIcon"></i>
-            <div class="solutionText">
-              <h4>Satınalma Strategiyasının İnkişafı</h4>
-              <p>Təşkilati məqsədlərinizə və bazar şərtlərinə uyğunlaşdırılmış fərdi satınalma strategiyalarının hazırlanması.</p>
-            </div>
-          </div>
-          <div class="solutionItem">
-            <i class="fas fa-check-circle solutionIcon"></i>
-            <div class="solutionText">
-              <h4>Tender Sənədləşməsi</h4>
-              <p>Tələbləri və qiymətləndirmə meyarlarını açıq şəkildə müəyyən edən hərtərəfli tender sənədlərinin hazırlanması.</p>
-            </div>
-          </div>
-          <div class="solutionItem">
-            <i class="fas fa-check-circle solutionIcon"></i>
-            <div class="solutionText">
-              <h4>Təchizatçı Münasibətlərinin İdarə Edilməsi</h4>
-              <p>Təchizatçı münasibətlərini və performansını idarə etmək üçün strukturlaşdırılmış yanaşmaların inkişafı.</p>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="solutionItem">
-            <i class="fas fa-check-circle solutionIcon"></i>
-            <div class="solutionText">
-              <h4>Xərc Optimallaşdırması</h4>
-              <p>Təkmilləşdirilmiş satınalma təcrübələri və təchizatçı danışıqları vasitəsilə xərc qənaət imkanlarının müəyyənləşdirilməsi.</p>
-            </div>
-          </div>
-          <div class="solutionItem">
-            <i class="fas fa-check-circle solutionIcon"></i>
-            <div class="solutionText">
-              <h4>Risk İdarəetmə</h4>
-              <p>Satınalma dövrü boyunca hərtərəfli risk qiymətləndirilməsi və azaltma strategiyaları.</p>
-            </div>
-          </div>
-          <div class="solutionItem">
-            <i class="fas fa-check-circle solutionIcon"></i>
-            <div class="solutionText">
-              <h4>Proses Rəqəmsallaşdırması</h4>
-              <p>Satınalma proseslərini sadələşdirmək və şəffaflığı artırmaq üçün rəqəmsal alətlər və platformaların tətbiqi.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="whyUsSection" id="why-us">
-    <div class="container">
-      <h2 class="sectionTitle">Niyə Prime Trade Group?</h2>
-      <p class="sectionSubtitle">Satınalma sənayesində bizi fərqləndirən unikal üstünlüklərimiz</p>
-      <div class="whyUsContent">
-        <div>
-          <div class="whyUsItem">
-            <i class="fas fa-globe whyUsIcon"></i>
-            <div class="whyUsText">
-              <h4>Yerli Ekspertiza</h4>
-              <p>Azərbaycanın biznes mühiti, qaydaları və bazar dinamikasına dərin anlayış.</p>
-            </div>
-          </div>
-          <div class="whyUsItem">
-            <i class="fas fa-balance-scale whyUsIcon"></i>
-            <div class="whyUsText">
-              <h4>Qanuni Uyğunluq</h4>
-              <p>Yerli və beynəlxalq satınalma qaydalarına və standartlarına ciddi riayət.</p>
-            </div>
-          </div>
-          <div class="whyUsItem">
-            <i class="fas fa-cogs whyUsIcon"></i>
-            <div class="whyUsText">
-              <h4>Fərdi Yanaşma</h4>
-              <p>Hər bir müştərinin xüsusi sənayesinə, ölçüsünə və tələblərinə uyğunlaşdırılmış həllər.</p>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="whyUsItem">
-            <i class="fas fa-users whyUsIcon"></i>
-            <div class="whyUsText">
-              <h4>Təcrübəli Komanda</h4>
-              <p>Satınalma, təchizat zənciri və müvafiq sənayelərdə geniş təcrübəyə malik mütəxəssislər.</p>
-            </div>
-          </div>
-          <div class="whyUsItem">
-            <i class="fas fa-tachometer-alt whyUsIcon"></i>
-            <div class="whyUsText">
-              <h4>Səmərəlilik Fokusu</h4>
-              <p>Prosesləri optimallaşdırmaq, xərcləri azaltmaq və əməliyyat səmərəliliyini artırmaq öhdəliyi.</p>
-            </div>
-          </div>
-          <div class="whyUsItem">
-            <i class="fas fa-sync whyUsIcon"></i>
-            <div class="whyUsText">
-              <h4>Hərtərəfli Xidmət</h4>
-              <p>Planlaşdırmadan icraya qədər satınalma dövrü boyunca hərtərəfli dəstək.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="clientsSection" id="clients">
-    <div class="container textCenter">
-      <h2 class="sectionTitle">Müştərilərimiz</h2>
-      <p class="sectionSubtitle">Müxtəlif sənaye sahələrində aparıcı təşkilatlar tərəfindən etibar edilmişik</p>
-      <div class="clientsGrid">
-        <div class="clientLogo">
-          <i class="fas fa-building"></i>
-        </div>
-        <div class="clientLogo">
-          <i class="fas fa-university"></i>
-        </div>
-        <div class="clientLogo">
-          <i class="fas fa-industry"></i>
-        </div>
-        <div class="clientLogo">
-          <i class="fas fa-hospital"></i>
-        </div>
-        <div class="clientLogo">
-          <i class="fas fa-oil-can"></i>
-        </div>
-        <div class="clientLogo">
-          <i class="fas fa-landmark"></i>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="testimonialsSection" id="testimonials">
-    <div class="container textCenter">
-      <h2 class="sectionTitle">Müştərilərimiz Nə Deyir</h2>
-      <p class="sectionSubtitle">Satınalma və tender sahəsində kömək etdiyimiz təşkilatların rəyləri</p>
-      <div class="testimonialsGrid">
-        <div class="testimonialCard">
-          <p class="testimonialText">Prime Trade Group bizim satınalma prosesimizi dəyişdirdi, bu da əhəmiyyətli xərc qənaətinə və təchizatçı münasibətlərinin yaxşılaşmasına səbəb oldu. Onların yerli qaydalardakı təcrübəsi çox dəyərli idi.</p>
-          <div class="testimonialAuthor">
-            <div class="testimonialAuthorImg">
-              <i class="fas fa-user"></i>
-            </div>
-            <div class="testimonialAuthorInfo">
-              <h4>Fərid Məmmədov</h4>
-              <p>Satınalma Direktoru, AzEnergy</p>
-            </div>
-          </div>
-        </div>
-        <div class="testimonialCard">
-          <p class="testimonialText">Prime Trade Group ilə işləmək bizim tender prosesimizi sadələşdirdi. Onların detallara diqqəti və şəffaflığa sadiqliyi ehtiyaclarımıza uyğun təchizatçıları tapmağımızı təmin etdi.</p>
-          <div class="testimonialAuthor">
-            <div class="testimonialAuthorImg">
-              <i class="fas fa-user"></i>
-            </div>
-            <div class="testimonialAuthorInfo">
-              <h4>Leyla Əliyeva</h4>
-              <p>İcraçı Direktor, Baku Innovations</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="aboutSection" id="about">
-    <div class="container">
-      <h2 class="sectionTitle">Haqqımızda</h2>
-      <p class="sectionSubtitle">Hekayəmiz, missiyamız və vizyonumuz</p>
-      <div class="aboutContent">
-        <p class="aboutText">Prime Trade Group Azərbaycanda yerləşən aparıcı satınalma və tender idarəetmə məsləhət şirkətidir. 2015-ci ildə təsis edilmişik və təşkilatlara satınalma proseslərini optimallaşdırmaq, xərcləri azaltmaq və yerli və beynəlxalq qaydalara uyğunluğu təmin etmək sahəsində mükəmməllik reputasiyası qazanmışıq.</p>
-        <p class="aboutText">Komandamız müxtəlif sənaye sahələrində geniş təcrübəyə malik satınalma mütəxəssisləri, təchizat zənciri ekspertləri və sənaye mütəxəssislərindən ibarətdir. Biz yerli bilikləri beynəlxalq ən yaxşı təcrübələrlə birləşdirərək müştərilərimizin xüsusi ehtiyaclarına uyğunlaşdırılmış həllər təqdim edirik.</p>
-        <div class="missionVision">
-          <div class="missionCard">
-            <i class="fas fa-bullseye missionVisionIcon"></i>
-            <h3 class="missionVisionTitle">Missiyamız</h3>
-            <p class="missionVisionText">Azərbaycandakı təşkilatlara şəffaf, səmərəli və uyğun satınalma prosesləri ilə biznes uğuru və iqtisadi artımı təmin etmək.</p>
-          </div>
-          <div class="visionCard">
-            <i class="fas fa-eye missionVisionIcon"></i>
-            <h3 class="missionVisionTitle">Vizyonumuz</h3>
-            <p class="missionVisionText">Azərbaycanda satınalma və tender idarəetmə sahəsində aparıcı tərəfdaş olmaq, dürüstlük, təcrübə və mükəmməlliyə sadiqliyimizlə tanınmaq.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="contactSection" id="contact">
-    <div class="container">
-      <h2 class="sectionTitle">Bizimlə Əlaqə</h2>
-      <p class="sectionSubtitle">Konsultasiya və ya sorğular üçün komandamızla əlaqə saxlayın</p>
-      <div class="contactContent">
-        <form class="contactForm" id="contactForm">
-          <div class="formGroup">
-            <label for="name">Tam Ad</label>
-            <input type="text" id="name" name="name" required>
-            <div class="formError" id="nameError">Zəhmət olmasa adınızı daxil edin</div>
-          </div>
-          <div class="formGroup">
-            <label for="email">E-poçt Ünvanı</label>
-            <input type="email" id="email" name="email" required>
-            <div class="formError" id="emailError">Zəhmət olmasa düzgün e-poçt ünvanı daxil edin</div>
-          </div>
-          <div class="formGroup">
-            <label for="message">Mesaj</label>
-            <textarea id="message" name="message" required></textarea>
-            <div class="formError" id="messageError">Zəhmət olmasa mesajınızı daxil edin</div>
-          </div>
-          <button type="submit" class="btn btnPrimary">Mesaj Göndər</button>
-        </form>
-        <div class="contactInfo">
-          <div>
-            <div class="contactInfoItem">
-              <i class="fas fa-map-marker-alt contactInfoIcon"></i>
-              <div class="contactInfoText">
-                <h4>Ünvanımız</h4>
-                <p>123 Biznes Mərkəzi, Nizami Küçəsi, Bakı, Azərbaycan</p>
-              </div>
-            </div>
-            <div class="contactInfoItem">
-              <i class="fas fa-phone-alt contactInfoIcon"></i>
-              <div class="contactInfoText">
-                <h4>Telefon Nömrəsi</h4>
-                <p>+994 12 345 6789</p>
-              </div>
-            </div>
-            <div class="contactInfoItem">
-              <i class="fas fa-envelope contactInfoIcon"></i>
-              <div class="contactInfoText">
-                <h4>E-poçt Ünvanı</h4>
-                <p>info@primetradegroup.az</p>
-              </div>
-            </div>
-          </div>
-          <div class="contactMap">
-            <div class="mapPlaceholder">
-              <i class="fas fa-map-pin"></i>
-              <p>Bakı, Azərbaycan</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footerContent">
-        <p class="footerCopyright">© 2025 Prime Trade Group. Bütün hüquqlar qorunur.</p>
-        <div class="footerLinks">
-          <a href="#home" class="footerLink">Ana Səhifə</a>
-          <a href="#services" class="footerLink">Xidmətlər</a>
-          <a href="#about" class="footerLink">Haqqımızda</a>
-          <a href="#contact" class="footerLink">Əlaqə</a>
-        </div>
-        <div class="footerSocial">
-          <a href="#" class="socialIcon"><i class="fab fa-linkedin"></i></a>
-          <a href="#" class="socialIcon"><i class="fas fa-envelope"></i></a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const navMenu = document.getElementById('navMenu');
-    
-    mobileMenuBtn.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      
-      const icon = mobileMenuBtn.querySelector('i');
-      if (navMenu.classList.contains('active')) {
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-times');
-      } else {
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
-      }
-    });
-
-    const header = document.getElementById('header');
-    
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) {
-        header.classList.add('headerScrolled');
-      } else {
-        header.classList.remove('headerScrolled');
-      }
-    });
-
-    const navLinks = document.querySelectorAll('.navLink, .footerLink, .heroBtn');
-    
-    navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        
-        if (navMenu.classList.contains('active')) {
-          navMenu.classList.remove('active');
-          const icon = mobileMenuBtn.querySelector('i');
-          icon.classList.remove('fa-times');
-          icon.classList.add('fa-bars');
-        }
-        
-        const targetId = link.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        
-        window.scrollTo({
-          top: targetSection.offsetTop - 80,
-          behavior: 'smooth'
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         });
-      });
-    });
 
-    const contactForm = document.getElementById('contactForm');
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const messageInput = document.getElementById('message');
-    const nameError = document.getElementById('nameError');
-    const emailError = document.getElementById('emailError');
-    const messageError = document.getElementById('messageError');
+        // Mobile menu toggle
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
 
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      let isValid = true;
+        hamburgerMenu.addEventListener('click', function() {
+            hamburgerMenu.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+        });
 
-      if (nameInput.value.trim() === '') {
-        nameError.style.display = 'block';
-        nameInput.style.borderColor = '#254057';
-        isValid = false;
-      } else {
-        nameError.style.display = 'none';
-        nameInput.style.borderColor = '#ddd';
-      }
+        function closeMobileMenu() {
+            hamburgerMenu.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
 
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(emailInput.value)) {
-        emailError.style.display = 'block';
-        emailInput.style.borderColor = '#254057';
-        isValid = false;
-      } else {
-        emailError.style.display = 'none';
-        emailInput.style.borderColor = '#ddd';
-      }
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!hamburgerMenu.contains(event.target) && !mobileMenu.contains(event.target)) {
+                closeMobileMenu();
+            }
+        });
 
-      if (messageInput.value.trim() === '') {
-        messageError.style.display = 'block';
-        messageInput.style.borderColor = '#254057';
-        isValid = false;
-      } else {
-        messageError.style.display = 'none';
-        messageInput.style.borderColor = '#ddd';
-      }
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                closeMobileMenu();
+            });
+        });
 
-      if (isValid) {
-        alert('Mesajınız üçün təşəkkür edirik! Tezliklə sizinlə əlaqə saxlayacağıq.');
-        contactForm.reset();
-      }
-    });
+        // Form submission handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Simple validation
+            if (!data.name || !data.email || !data.message) {
+                alert('Zəhmət olmasa bütün vacib sahələri doldurun.');
+                return;
+            }
 
-    nameInput.addEventListener('input', () => {
-      nameError.style.display = 'none';
-      nameInput.style.borderColor = '#ddd';
-    });
+            // Show loading state
+            const submitBtn = event.target.querySelector('.submitButton');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Göndərilir...';
+            submitBtn.disabled = true;
 
-    emailInput.addEventListener('input', () => {
-      emailError.style.display = 'none';
-      emailInput.style.borderColor = '#ddd';
-    });
+            // Simulate form submission (replace with actual API call)
+            setTimeout(() => {
+                // Reset form
+                event.target.reset();
+                
+                // Reset button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                
+                // Show success modal
+                document.getElementById('successModal').style.display = 'flex';
+            }, 2000);
+        }
 
-    messageInput.addEventListener('input', () => {
-      messageError.style.display = 'none';
-      messageInput.style.borderColor = '#ddd';
-    });
-  </script>
-</body>
+        // Modal functionality
+        function closeModal() {
+            document.getElementById('successModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('successModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Animate elements on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.serviceCard, .statItem, .contactItem');
+            const windowHeight = window.innerHeight;
+
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('fadeIn');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Initial animation check
+        document.addEventListener('DOMContentLoaded', animateOnScroll);
+
+        // Service card click handlers
+        document.querySelectorAll('.serviceCard').forEach(card => {
+            card.addEventListener('click', function() {
+                const serviceType = this.onclick.toString().match(/#(\w+)/)?.[1];
+                if (serviceType) {
+                    // You can add specific actions for each service type here
+                    console.log(`Clicked on service: ${serviceType}`);
+                }
+            });
+        });
+
+        // Add typing effect to hero title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.textContent = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            
+            type();
+        }
+
+        // Initialize typing effect when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroTitle = document.querySelector('.heroTitle');
+            const originalText = heroTitle.textContent;
+            
+            setTimeout(() => {
+                typeWriter(heroTitle, originalText, 150);
+            }, 500);
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const heroSection = document.querySelector('.heroSection');
+            const rate = scrolled * -0.5;
+            
+            if (heroSection) {
+                heroSection.style.transform = `translateY(${rate}px)`;
+            }
+        });
+
+        // Add counter animation for statistics
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            function updateCounter() {
+                start += increment;
+                if (start < target) {
+                    element.textContent = Math.floor(start) + (target.toString().includes('+') ? '+' : '');
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target;
+                }
+            }
+            
+            updateCounter();
+        }
+
+        // Trigger counter animation when stats section is visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.statNumber');
+                    statNumbers.forEach(statNumber => {
+                        const target = statNumber.textContent;
+                        const numericValue = parseInt(target.replace(/\D/g, ''));
+                        if (numericValue) {
+                            animateCounter(statNumber, target, 2000);
+                        }
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const aboutStats = document.querySelector('.aboutStats');
+            if (aboutStats) {
+                observer.observe(aboutStats);
+            }
+        });
+    </script>
+
+    <style>
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modalContent {
+            background-color: var(--colorWhite);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadowHeavy);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            animation: slideInUp 0.3s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .closeModal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--colorTextLight);
+            transition: var(--transitionFast);
+        }
+
+        .closeModal:hover {
+            color: var(--colorPrimary);
+        }
+
+        .modalContent h3 {
+            color: var(--colorPrimary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .modalContent p {
+            color: var(--colorTextLight);
+            line-height: 1.6;
+        }
+
+        /* Enhanced Service Cards */
+        .serviceCard {
+            position: relative;
+            border-left: 4px solid transparent;
+            transition: all var(--transitionSlow);
+        }
+
+        .serviceCard:hover {
+            border-left-color: var(--colorPrimary);
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        /* Loading animation for form button */
+        .submitButton:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Enhanced animations */
+        .fadeIn {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* Improved responsive design */
+        @media (max-width: 640px) {
+            .heroSection {
+                padding: 6rem 0 3rem;
+            }
+            
+            .modalContent {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .footerContent {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .socialLinks {
+                justify-content: center;
+            }
+        }
+
+        /* Additional hover effects */
+        .contactItem:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadowMedium);
+        }
+
+        .footerSection a:hover {
+            transform: translateX(5px);
+        }
+
+        /* Scroll indicator */
+        .scrollIndicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--colorPrimary), var(--colorAccent));
+            z-index: 10001;
+            transition: width 0.1s ease-out;
+        }
+    </style>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scrollIndicator" id="scrollIndicator"></div>
+
+    <script>
+        // Scroll progress indicator
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            document.getElementById('scrollIndicator').style.width = scrollPercent + '%';
+        });
+    </script>
+    </body>
 </html>
