@@ -4,338 +4,842 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Şəkil Yaradıcı | PRO</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
             --primary: #6366f1;
             --primary-hover: #4f46e5;
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
+            --primary-glow: rgba(99,102,241,0.35);
+            --bg: #0a0e1a;
+            --surface: #111827;
+            --surface2: #1a2235;
+            --border: #1e2d45;
+            --text: #f1f5f9;
+            --muted: #64748b;
+            --success: #10b981;
+            --success-hover: #059669;
+            --danger: #ef4444;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background: var(--bg);
+            color: var(--text);
             min-height: 100vh;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            padding: 20px;
+            padding: 24px 16px 48px;
+            background-image:
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99,102,241,0.12), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(168,85,247,0.07), transparent);
         }
 
-        .container {
-            background-color: var(--card-bg);
-            width: 100%;
-            max-width: 800px;
-            border-radius: 24px;
-            padding: 40px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
-
-        .header {
+        /* ── HEADER ── */
+        .page-header {
             text-align: center;
+            margin-bottom: 32px;
+            padding-top: 16px;
         }
-
-        .header h1 {
-            font-size: 28px;
-            background: linear-gradient(to right, #a855f7, #6366f1);
+        .page-header .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(99,102,241,0.15);
+            border: 1px solid rgba(99,102,241,0.3);
+            color: #a5b4fc;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+        }
+        .page-header h1 {
+            font-size: clamp(26px, 5vw, 40px);
+            font-weight: 800;
+            background: linear-gradient(135deg, #c4b5fd 0%, #818cf8 40%, #6366f1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .page-header p {
+            color: var(--muted);
+            font-size: 14px;
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* ── MAIN CARD ── */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px;
+            width: 100%;
+            max-width: 860px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        /* ── SECTION LABEL ── */
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        /* ── PROMPT AREA ── */
+        .prompt-wrapper {
+            position: relative;
+            margin-bottom: 16px;
+        }
+        textarea#promptInput {
+            width: 100%;
+            height: 110px;
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            color: var(--text);
+            padding: 14px 16px;
+            padding-bottom: 40px;
+            border-radius: 14px;
+            resize: none;
+            font-size: 15px;
+            line-height: 1.6;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            font-family: inherit;
+        }
+        textarea#promptInput::placeholder { color: var(--muted); }
+        textarea#promptInput:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+        }
+        .char-count {
+            position: absolute;
+            bottom: 12px;
+            right: 14px;
+            font-size: 11px;
+            color: var(--muted);
+            pointer-events: none;
+        }
+        .char-count.warn { color: #f59e0b; }
+
+        /* ── CONTROLS GRID ── */
+        .controls-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        select {
+            width: 100%;
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            color: var(--text);
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.2s;
+            -webkit-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%2364748b' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 18px;
+            padding-right: 32px;
+        }
+        select:focus { border-color: var(--primary); }
+        select option { background: #1a2235; }
+
+        /* ── ENHANCE TOGGLE ── */
+        .enhance-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+            padding: 10px 14px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+        .toggle {
+            position: relative;
+            width: 38px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+        .toggle input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider {
+            position: absolute;
+            inset: 0;
+            background: var(--border);
+            border-radius: 22px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            left: 3px;
+            top: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.2s;
+        }
+        .toggle input:checked + .toggle-slider { background: var(--primary); }
+        .toggle input:checked + .toggle-slider::before { transform: translateX(16px); }
+        .enhance-text {
+            font-size: 13px;
+            color: var(--text);
+            flex: 1;
+        }
+        .enhance-text span {
+            display: block;
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 1px;
+        }
+        .enhance-badge {
+            font-size: 10px;
+            font-weight: 700;
+            background: rgba(99,102,241,0.2);
+            color: #a5b4fc;
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        /* ── GENERATE BUTTON ── */
+        #generateBtn {
+            width: 100%;
+            background: linear-gradient(135deg, #6366f1, #7c3aed);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.2s;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 20px rgba(99,102,241,0.3);
+            margin-bottom: 24px;
+        }
+        #generateBtn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #4f46e5, #6d28d9);
+            box-shadow: 0 6px 28px rgba(99,102,241,0.45);
+            transform: translateY(-1px);
+        }
+        #generateBtn:active:not(:disabled) { transform: translateY(0); }
+        #generateBtn:disabled {
+            background: #1e2d45;
+            color: var(--muted);
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        /* ── RESULT AREA ── */
+        .result-section { width: 100%; }
+        .result-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             margin-bottom: 10px;
         }
 
-        .header p {
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        textarea {
-            width: 100%;
-            height: 120px;
-            background-color: #0f172a;
-            border: 1px solid #334155;
-            color: white;
-            padding: 15px;
-            border-radius: 12px;
-            resize: none;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-        }
-
-        .controls {
-            display: flex;
-            gap: 15px;
-        }
-
-        select {
-            flex: 1;
-            background-color: #0f172a;
-            border: 1px solid #334155;
-            color: white;
-            padding: 12px 15px;
-            border-radius: 12px;
-            font-size: 14px;
-            cursor: pointer;
-            outline: none;
-        }
-
-        button {
-            width: 100%;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 16px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-
-        button:hover {
-            background-color: var(--primary-hover);
-        }
-
-        button:disabled {
-            background-color: #334155;
-            cursor: not-allowed;
-        }
-
-        .result-area {
+        #resultArea {
             position: relative;
             width: 100%;
-            min-height: 300px;
-            background-color: #0f172a;
+            min-height: 340px;
+            background: var(--bg);
+            border: 2px dashed var(--border);
             border-radius: 16px;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            border: 2px dashed #334155;
+            transition: border-color 0.3s;
+        }
+        #resultArea.has-image {
+            border: 2px solid var(--border);
+            min-height: unset;
         }
 
-        .result-area img {
+        #resultImage {
             width: 100%;
-            height: 100%;
-            object-fit: contain;
             display: none;
             border-radius: 14px;
+            object-fit: contain;
         }
 
-        .loader {
+        /* ── EMPTY STATE ── */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            color: var(--muted);
+            padding: 40px 20px;
+        }
+        .empty-state i { opacity: 0.3; }
+        .empty-state p { font-size: 14px; }
+
+        /* ── LOADER ── */
+        #loader {
             display: none;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
-            color: var(--primary);
+            gap: 18px;
+            padding: 50px 20px;
         }
-
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #334155;
+        .spinner-ring {
+            width: 54px;
+            height: 54px;
+            border: 4px solid var(--border);
             border-top-color: var(--primary);
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            animation: spin 0.8s linear infinite;
+        }
+        .loader-text {
+            color: var(--muted);
+            font-size: 14px;
+        }
+        .loader-dots::after {
+            content: '';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+        @keyframes dots {
+            0%   { content: ''; }
+            25%  { content: '.'; }
+            50%  { content: '..'; }
+            75%  { content: '...'; }
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── PROGRESS BAR ── */
+        .progress-wrap {
+            width: 180px;
+            height: 4px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #6366f1, #a855f7);
+            border-radius: 4px;
+            animation: progress 18s ease-out forwards;
+        }
+        @keyframes progress {
+            0%   { width: 0%; }
+            60%  { width: 70%; }
+            90%  { width: 88%; }
+            100% { width: 92%; }
         }
 
-        .empty-state {
-            color: var(--text-muted);
+        /* ── ERROR STATE ── */
+        .error-state {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 40px 20px;
+            color: var(--danger);
             text-align: center;
         }
+        .error-state i { font-size: 32px; opacity: 0.7; }
+        .error-state p { font-size: 14px; color: var(--muted); }
+        .retry-btn {
+            background: rgba(239,68,68,0.1);
+            border: 1px solid rgba(239,68,68,0.3);
+            color: var(--danger);
+            padding: 8px 20px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .retry-btn:hover { background: rgba(239,68,68,0.2); }
 
-        .download-btn {
+        /* ── IMAGE META ── */
+        .image-meta {
             display: none;
-            background-color: #10b981;
-            margin-top: 15px;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 12px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .meta-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            color: var(--muted);
+        }
+        .meta-chip i { font-size: 10px; }
+
+        /* ── DOWNLOAD BUTTON ── */
+        #downloadBtn {
+            display: none;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+            padding: 13px 20px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+            width: 100%;
+            transition: all 0.2s;
+            box-shadow: 0 4px 16px rgba(16,185,129,0.25);
+        }
+        #downloadBtn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 22px rgba(16,185,129,0.35);
         }
 
-        .download-btn:hover {
-            background-color: #059669;
+        /* ── MODEL INFO TOOLTIP ── */
+        .model-tip {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 4px;
+            min-height: 16px;
+            transition: opacity 0.2s;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        /* ── FOOTER ── */
+        .footer {
+            margin-top: 24px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 12px;
         }
 
-        /* Mobil Uyğunluq */
-        @media (max-width: 600px) {
-            .container { padding: 20px; }
-            .controls { flex-direction: column; }
-            .result-area { min-height: 250px; }
+        /* ── RESPONSIVE ── */
+        @media (max-width: 640px) {
+            .card { padding: 20px; }
+            .controls-grid { grid-template-columns: 1fr 1fr; }
+            .controls-grid .control-group:last-child { grid-column: 1/-1; }
+            #resultArea { min-height: 260px; }
+        }
+        @media (max-width: 420px) {
+            .controls-grid { grid-template-columns: 1fr; }
+            .controls-grid .control-group:last-child { grid-column: auto; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="header">
-            <h1><i class="fa-solid fa-wand-magic-sparkles"></i> AI Şəkil Yaradıcı</h1>
-            <p>Xəyal etdiyiniz mənzərəni yazın və süni intellekt onu reallaşdırsın</p>
+    <header class="page-header">
+        <div class="badge"><i class="fa-solid fa-sparkles"></i> Powered by Pollinations AI</div>
+        <h1><i class="fa-solid fa-wand-magic-sparkles"></i> AI Şəkil Yaradıcı</h1>
+        <p>Xəyal etdiyinizi yazın — süni intellekt anında şəkil yaratsın. Heç bir qeydiyyat tələb olunmur.</p>
+    </header>
+
+    <div class="card">
+
+        <!-- PROMPT -->
+        <div class="section-label">Şəkil Təsviri</div>
+        <div class="prompt-wrapper">
+            <textarea id="promptInput"
+                placeholder="Məsələn: Gələcəyin Bakı şəhəri, uçan maşınlar, kiberpank stili, neon işıqlar, şəhər mənzərəsi, göy üzü, yağış, 8k ultra detailed..."></textarea>
+            <span class="char-count" id="charCount">0 / 500</span>
         </div>
 
-        <div class="input-group">
-            <textarea id="promptInput" placeholder="Məsələn: Gələcəyin Bakı şəhəri, uçan maşınlar, kiberpank stili, neon işıqlar, 8k, çox detallı..."></textarea>
-            
-            <div class="controls">
-                <select id="ratioSelect">
-                    <option value="square">Kvadrat (1:1)</option>
-                    <option value="portrait">Telefon (9:16)</option>
-                    <option value="landscape">Kompüter (16:9)</option>
-                </select>
-                
+        <!-- CONTROLS -->
+        <div class="controls-grid">
+            <div class="control-group">
+                <div class="section-label">Model</div>
                 <select id="modelSelect">
-                    <option value="flux">Flux Model (Ən Dəqiq)</option>
-                    <option value="turbo">Turbo Model (Daha Sürətli)</option>
+                    <option value="flux">✦ Flux — Ən Yaxşı</option>
+                    <option value="flux-realism">✦ Flux Realism</option>
+                    <option value="flux-anime">✦ Flux Anime</option>
+                    <option value="flux-3d">✦ Flux 3D</option>
+                    <option value="turbo">⚡ Turbo — Sürətli</option>
+                    <option value="gptimage">◈ GPT Image</option>
+                    <option value="seedream">◈ Seedream</option>
+                </select>
+                <div class="model-tip" id="modelTip">Ən yüksək keyfiyyət</div>
+            </div>
+
+            <div class="control-group">
+                <div class="section-label">Nisbət</div>
+                <select id="ratioSelect">
+                    <option value="square_1024">⬜ Kvadrat  1:1</option>
+                    <option value="portrait_768_1344">📱 Telefon  9:16</option>
+                    <option value="landscape_1344_768">🖥  Geniş  16:9</option>
+                    <option value="portrait_832_1216">📷 Portret  2:3</option>
+                    <option value="landscape_1216_832">🖼  Landscape  3:2</option>
+                    <option value="square_768">📦 Kiçik  768px</option>
                 </select>
             </div>
 
-            <button id="generateBtn"><i class="fa-solid fa-image"></i> Şəkil Yarat</button>
+            <div class="control-group">
+                <div class="section-label">Seed</div>
+                <select id="seedSelect">
+                    <option value="random">🎲 Təsadüfi</option>
+                    <option value="42">42</option>
+                    <option value="123">123</option>
+                    <option value="777">777</option>
+                    <option value="1337">1337</option>
+                    <option value="9999">9999</option>
+                </select>
+            </div>
         </div>
 
-        <div>
-            <div class="result-area" id="resultArea">
+        <!-- ENHANCE TOGGLE -->
+        <div class="enhance-row">
+            <label class="toggle">
+                <input type="checkbox" id="enhanceToggle" checked>
+                <span class="toggle-slider"></span>
+            </label>
+            <div class="enhance-text">
+                Prompt Gücləndir
+                <span>AI avtomatik olaraq promptu daha detallı hala gətirir</span>
+            </div>
+            <span class="enhance-badge">AI BOOST</span>
+        </div>
+
+        <!-- GENERATE BUTTON -->
+        <button id="generateBtn">
+            <i class="fa-solid fa-image"></i>
+            <span id="btnText">Şəkil Yarat</span>
+        </button>
+
+        <!-- RESULT -->
+        <div class="result-section">
+            <div class="result-header">
+                <div class="section-label" style="margin:0">Nəticə</div>
+                <div id="currentSeedLabel" style="font-size:11px;color:var(--muted);display:none">
+                    Seed: <span id="seedDisplay">—</span>
+                </div>
+            </div>
+
+            <div id="resultArea">
                 <div class="empty-state" id="emptyState">
                     <i class="fa-regular fa-image fa-3x"></i>
-                    <p style="margin-top: 10px;">Nəticə burada görünəcək</p>
-                </div>
-                
-                <div class="loader" id="loader">
-                    <div class="spinner"></div>
-                    <p>Süni intellekt rəsm edir...</p>
+                    <p>Nəticə burada görünəcək</p>
                 </div>
 
-                <img id="resultImage" alt="Generated AI Image">
+                <div id="loader">
+                    <div class="spinner-ring"></div>
+                    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+                    <p class="loader-text">Şəkil yaradılır<span class="loader-dots"></span></p>
+                </div>
+
+                <div class="error-state" id="errorState">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <strong>Xəta baş verdi</strong>
+                    <p id="errorMsg">Bağlantı problemi. Yenidən yoxlayın.</p>
+                    <button class="retry-btn" id="retryBtn"><i class="fa-solid fa-rotate-right"></i> Yenidən Cəhd Et</button>
+                </div>
+
+                <img id="resultImage" alt="AI tərəfindən yaradılmış şəkil">
             </div>
-            
-            <button id="downloadBtn" class="download-btn"><i class="fa-solid fa-download"></i> Şəkli Yüklə</button>
+
+            <div class="image-meta" id="imageMeta">
+                <div>
+                    <span class="meta-chip"><i class="fa-solid fa-microchip"></i> <span id="metaModel">—</span></span>
+                    <span class="meta-chip"><i class="fa-solid fa-expand"></i> <span id="metaSize">—</span></span>
+                    <span class="meta-chip"><i class="fa-solid fa-hashtag"></i> <span id="metaSeed">—</span></span>
+                </div>
+            </div>
+
+            <button id="downloadBtn">
+                <i class="fa-solid fa-download"></i> Şəkli Yüklə (Orijinal Keyfiyyət)
+            </button>
         </div>
+
     </div>
 
-    <script>
-        // DOM Elementlərini seçirik
-        const promptInput = document.getElementById('promptInput');
-        const ratioSelect = document.getElementById('ratioSelect');
-        const modelSelect = document.getElementById('modelSelect');
-        const generateBtn = document.getElementById('generateBtn');
-        const resultImage = document.getElementById('resultImage');
-        const loader = document.getElementById('loader');
-        const emptyState = document.getElementById('emptyState');
-        const downloadBtn = document.getElementById('downloadBtn');
+    <div class="footer">Pollinations.AI · Pulsuz · Qeydiyyatsız · Açıq Mənbəli</div>
 
-        // Cari yaradılmış şəklin lokal URL-i (yükləmək üçün)
-        let currentImageUrl = '';
+<script>
+    // ── DOM ──────────────────────────────────────────────────────────────────
+    const promptInput   = document.getElementById('promptInput');
+    const charCount     = document.getElementById('charCount');
+    const modelSelect   = document.getElementById('modelSelect');
+    const ratioSelect   = document.getElementById('ratioSelect');
+    const seedSelect    = document.getElementById('seedSelect');
+    const enhanceToggle = document.getElementById('enhanceToggle');
+    const generateBtn   = document.getElementById('generateBtn');
+    const btnText       = document.getElementById('btnText');
+    const resultArea    = document.getElementById('resultArea');
+    const resultImage   = document.getElementById('resultImage');
+    const emptyState    = document.getElementById('emptyState');
+    const loader        = document.getElementById('loader');
+    const progressBar   = document.getElementById('progressBar');
+    const errorState    = document.getElementById('errorState');
+    const errorMsg      = document.getElementById('errorMsg');
+    const retryBtn      = document.getElementById('retryBtn');
+    const downloadBtn   = document.getElementById('downloadBtn');
+    const imageMeta     = document.getElementById('imageMeta');
+    const metaModel     = document.getElementById('metaModel');
+    const metaSize      = document.getElementById('metaSize');
+    const metaSeed      = document.getElementById('metaSeed');
+    const seedDisplay   = document.getElementById('seedDisplay');
+    const seedLabel     = document.getElementById('currentSeedLabel');
+    const modelTip      = document.getElementById('modelTip');
 
-        generateBtn.addEventListener('click', async () => {
-            const prompt = promptInput.value.trim();
-            
-            if (!prompt) {
-                alert("Zəhmət olmasa, nə yaratmaq istədiyinizi yazın!");
-                return;
-            }
+    // ── Model təsviri ────────────────────────────────────────────────────────
+    const MODEL_TIPS = {
+        'flux':          'Ən yüksək keyfiyyət, realist',
+        'flux-realism':  'Foto-realizm üçün ən yaxşı',
+        'flux-anime':    'Anime / manga stili',
+        'flux-3d':       '3D render stili',
+        'turbo':         'Sürətli, orta keyfiyyət',
+        'gptimage':      'GPT dəqiqliyi + keyfiyyət',
+        'seedream':      'Yaradıcı, bədii stil',
+    };
+    modelSelect.addEventListener('change', () => {
+        modelTip.textContent = MODEL_TIPS[modelSelect.value] || '';
+    });
 
-            // Ölçü məntiqi
-            let width = 1024, height = 1024;
-            if (ratioSelect.value === 'portrait') {
-                width = 720; height = 1280;
-            } else if (ratioSelect.value === 'landscape') {
-                width = 1280; height = 720;
-            }
+    // ── Ratio → width/height ─────────────────────────────────────────────────
+    const RATIOS = {
+        'square_1024':        [1024, 1024],
+        'portrait_768_1344':  [768,  1344],
+        'landscape_1344_768': [1344, 768],
+        'portrait_832_1216':  [832,  1216],
+        'landscape_1216_832': [1216, 832],
+        'square_768':         [768,  768],
+    };
 
-            // Unikallıq üçün təsadüfi rəqəm
-            const seed = Math.floor(Math.random() * 1000000);
-            
-            // Pollinations API Linkinin yığılması
-            // Daha yaxşı keyfiyyət üçün prompt-a avtomatik detallar əlavə edirik
-            const enhancedPrompt = `${prompt}, photorealistic, high quality, 8k resolution, highly detailed`.replace(/ /g, '%20');
-            const model = modelSelect.value;
-            
-            const apiUrl = `https://image.pollinations.ai/prompt/${enhancedPrompt}?width=${width}&height=${height}&seed=${seed}&nologo=true&model=${model}`;
+    // ── Char counter ─────────────────────────────────────────────────────────
+    promptInput.addEventListener('input', () => {
+        const len = promptInput.value.length;
+        charCount.textContent = `${len} / 500`;
+        charCount.classList.toggle('warn', len > 420);
+    });
 
-            // UI-ı yüklənmə rejiminə keçiririk
-            generateBtn.disabled = true;
-            generateBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Yaradılır...';
-            emptyState.style.display = 'none';
-            resultImage.style.display = 'none';
-            downloadBtn.style.display = 'none';
+    // ── Mövcud URL ───────────────────────────────────────────────────────────
+    let currentBlobUrl = '';
+    let lastParams = null;
+
+    // ── Yenidən cəhd ─────────────────────────────────────────────────────────
+    retryBtn.addEventListener('click', () => {
+        if (lastParams) generateImage(lastParams);
+    });
+
+    // ── Yarat düyməsi ────────────────────────────────────────────────────────
+    generateBtn.addEventListener('click', () => {
+        const prompt = promptInput.value.trim();
+        if (!prompt) {
+            promptInput.focus();
+            promptInput.style.borderColor = '#ef4444';
+            setTimeout(() => { promptInput.style.borderColor = ''; }, 1500);
+            return;
+        }
+
+        const [width, height] = RATIOS[ratioSelect.value] || [1024, 1024];
+        const model   = modelSelect.value;
+        const enhance = enhanceToggle.checked;
+        const seed    = seedSelect.value === 'random'
+            ? Math.floor(Math.random() * 999999) + 1
+            : parseInt(seedSelect.value);
+
+        lastParams = { prompt, width, height, model, enhance, seed };
+        generateImage(lastParams);
+    });
+
+    // ── Əsas funksiya ────────────────────────────────────────────────────────
+    function generateImage({ prompt, width, height, model, enhance, seed }) {
+
+        // UI → yükləmə rejimi
+        setLoading(true);
+
+        // Seed göstər
+        seedDisplay.textContent  = seed;
+        seedLabel.style.display  = 'block';
+        metaSeed.textContent     = seed;
+        metaModel.textContent    = model;
+        metaSize.textContent     = `${width}×${height}`;
+
+        // URL qur
+        const encodedPrompt = encodeURIComponent(prompt);
+        const params = new URLSearchParams({
+            width:   width,
+            height:  height,
+            seed:    seed,
+            model:   model,
+            nologo:  'true',
+            enhance: enhance ? 'true' : 'false',
+            private: 'false',
+        });
+        const apiUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?${params.toString()}`;
+
+        // Şəkli yüklə
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+
+        img.onload = function() {
+            // Blob alırıq ki, yüklənə bilsin
+            fetch(apiUrl)
+                .then(r => {
+                    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+                    return r.blob();
+                })
+                .then(blob => {
+                    if (currentBlobUrl) URL.revokeObjectURL(currentBlobUrl);
+                    currentBlobUrl = URL.createObjectURL(blob);
+
+                    resultImage.src = currentBlobUrl;
+                    showResult();
+                })
+                .catch(() => {
+                    // fetch uğursuz olsa belə img.src artıq yüklənib — onu göstər
+                    resultImage.src = apiUrl;
+                    showResultDirect();
+                });
+        };
+
+        img.onerror = function() {
+            showError('Şəkil yaradıla bilmədi. Başqa model və ya prompt sınayın.');
+        };
+
+        // Vaxt aşımı — 90 saniyə
+        const timeout = setTimeout(() => {
+            img.onload = null;
+            img.onerror = null;
+            showError('Zaman aşımı (90s). Server məşğuldur, yenidən cəhd edin.');
+        }, 90000);
+
+        img.onload = function() {
+            clearTimeout(timeout);
+            // Yüklənmiş şəkli blob kimi götür
+            fetch(apiUrl)
+                .then(r => r.ok ? r.blob() : Promise.reject(r.status))
+                .then(blob => {
+                    if (currentBlobUrl) URL.revokeObjectURL(currentBlobUrl);
+                    currentBlobUrl = URL.createObjectURL(blob);
+                    resultImage.src = currentBlobUrl;
+                    showResult();
+                })
+                .catch(() => {
+                    // CORS problemi olsa birbaşa URL istifadə et
+                    resultImage.src = apiUrl;
+                    currentBlobUrl = apiUrl;
+                    showResult();
+                });
+        };
+
+        img.onerror = function() {
+            clearTimeout(timeout);
+            showError('Şəkil yaradıla bilmədi. Başqa model və ya prompt sınayın.');
+        };
+
+        img.src = apiUrl;
+    }
+
+    // ── Yükləmə vəziyyəti ────────────────────────────────────────────────────
+    function setLoading(state) {
+        generateBtn.disabled = state;
+        btnText.textContent  = state ? 'Yaradılır...' : 'Şəkil Yarat';
+        generateBtn.querySelector('i').className = state
+            ? 'fa-solid fa-spinner fa-spin'
+            : 'fa-solid fa-image';
+
+        emptyState.style.display  = 'none';
+        errorState.style.display  = 'none';
+        imageMeta.style.display   = 'none';
+        downloadBtn.style.display = 'none';
+        resultImage.style.display = 'none';
+        resultArea.classList.remove('has-image');
+
+        if (state) {
             loader.style.display = 'flex';
-            document.getElementById('resultArea').style.border = 'none';
+            // Progress bar yenidən başlat
+            progressBar.style.animation = 'none';
+            progressBar.offsetHeight; // reflow
+            progressBar.style.animation = '';
+            resultArea.style.border = '2px solid var(--border)';
+        } else {
+            loader.style.display = 'none';
+        }
+    }
 
-            try {
-                // Şəkli Blob (fayl) kimi arxa fonda çəkirik
-                const response = await fetch(apiUrl);
-                
-                if (!response.ok) {
-                    throw new Error('Server xətası yarandı');
-                }
+    // ── Nəticəni göstər ──────────────────────────────────────────────────────
+    function showResult() {
+        loader.style.display      = 'none';
+        generateBtn.disabled      = false;
+        btnText.textContent       = 'Yenidən Yarat';
+        generateBtn.querySelector('i').className = 'fa-solid fa-rotate-right';
 
-                const blob = await response.blob();
-                
-                // Köhnə URL varsa, yaddaşı təmizləyirik (RAM-a qənaət)
-                if (currentImageUrl) {
-                    URL.revokeObjectURL(currentImageUrl);
-                }
+        resultImage.style.display = 'block';
+        resultArea.classList.add('has-image');
+        resultArea.style.border   = '2px solid var(--border)';
 
-                // Blobu lokal linkə çeviririk
-                currentImageUrl = URL.createObjectURL(blob);
+        imageMeta.style.display   = 'flex';
+        downloadBtn.style.display = 'flex';
+    }
 
-                // Şəkli ekrana veririk
-                resultImage.src = currentImageUrl;
-                resultImage.style.display = 'block';
-                downloadBtn.style.display = 'flex';
-                
-            } catch (error) {
-                alert("Bağlantıda xəta baş verdi. Zəhmət olmasa yenidən yoxlayın.");
-                emptyState.style.display = 'block';
-                document.getElementById('resultArea').style.border = '2px dashed #334155';
-            } finally {
-                // UI-ı əvvəlki halına qaytarırıq
-                loader.style.display = 'none';
-                generateBtn.disabled = false;
-                generateBtn.innerHTML = '<i class="fa-solid fa-image"></i> Şəkil Yarat';
-            }
-        });
+    function showResultDirect() { showResult(); }
 
-        // Yükləmə düyməsinin məntiqi
-        downloadBtn.addEventListener('click', () => {
-            if (!currentImageUrl) return;
-            
+    // ── Xəta göstər ──────────────────────────────────────────────────────────
+    function showError(msg) {
+        loader.style.display     = 'none';
+        generateBtn.disabled     = false;
+        btnText.textContent      = 'Şəkil Yarat';
+        generateBtn.querySelector('i').className = 'fa-solid fa-image';
+
+        errorMsg.textContent          = msg;
+        errorState.style.display      = 'flex';
+        resultArea.style.border       = '2px dashed #ef444444';
+    }
+
+    // ── Yüklə ────────────────────────────────────────────────────────────────
+    downloadBtn.addEventListener('click', () => {
+        if (!currentBlobUrl) return;
+
+        const model  = modelSelect.value;
+        const ts     = new Date().toISOString().slice(0,19).replace(/[:T]/g, '-');
+        const fname  = `AI_Sekil_${model}_${ts}.jpg`;
+
+        if (currentBlobUrl.startsWith('blob:')) {
             const a = document.createElement('a');
-            a.href = currentImageUrl;
-            // Fayla avtomatik ad veririk
-            a.download = `AI_Sekil_${new Date().getTime()}.jpg`;
-            document.body.appendChild(a);
+            a.href     = currentBlobUrl;
+            a.download = fname;
             a.click();
-            document.body.removeChild(a);
-        });
-    </script>
+        } else {
+            // CORS yoxdursa, yeni sekmede aç
+            window.open(currentBlobUrl, '_blank');
+        }
+    });
+</script>
 </body>
 </html>
